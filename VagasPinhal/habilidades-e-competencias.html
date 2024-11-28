@@ -1,0 +1,803 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <script>if (navigator.userAgent.match(/MSIE|Internet Explorer/i) || navigator.userAgent.match(/Trident\/7\..*?rv:11/i)) { var href = document.location.href; if (!href.match(/[?&]nowprocket/)) { if (href.indexOf("?") == -1) { if (href.indexOf("#") == -1) { document.location.href = href + "?nowprocket=1" } else { document.location.href = href.replace("#", "?nowprocket=1#") } } else { if (href.indexOf("#") == -1) { document.location.href = href + "&nowprocket=1" } else { document.location.href = href.replace("#", "&nowprocket=1#") } } } }</script>
+    <script>class RocketLazyLoadScripts { constructor() { this.v = "1.2.4", this.triggerEvents = ["keydown", "mousedown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"], this.userEventHandler = this._triggerListener.bind(this), this.touchStartHandler = this._onTouchStart.bind(this), this.touchMoveHandler = this._onTouchMove.bind(this), this.touchEndHandler = this._onTouchEnd.bind(this), this.clickHandler = this._onClick.bind(this), this.interceptedClicks = [], window.addEventListener("pageshow", t => { this.persisted = t.persisted }), window.addEventListener("DOMContentLoaded", () => { this._preconnect3rdParties() }), this.delayedScripts = { normal: [], async: [], defer: [] }, this.trash = [], this.allJQueries = [] } _addUserInteractionListener(t) { if (document.hidden) { t._triggerListener(); return } this.triggerEvents.forEach(e => window.addEventListener(e, t.userEventHandler, { passive: !0 })), window.addEventListener("touchstart", t.touchStartHandler, { passive: !0 }), window.addEventListener("mousedown", t.touchStartHandler), document.addEventListener("visibilitychange", t.userEventHandler) } _removeUserInteractionListener() { this.triggerEvents.forEach(t => window.removeEventListener(t, this.userEventHandler, { passive: !0 })), document.removeEventListener("visibilitychange", this.userEventHandler) } _onTouchStart(t) { "HTML" !== t.target.tagName && (window.addEventListener("touchend", this.touchEndHandler), window.addEventListener("mouseup", this.touchEndHandler), window.addEventListener("touchmove", this.touchMoveHandler, { passive: !0 }), window.addEventListener("mousemove", this.touchMoveHandler), t.target.addEventListener("click", this.clickHandler), this._renameDOMAttribute(t.target, "onclick", "rocket-onclick"), this._pendingClickStarted()) } _onTouchMove(t) { window.removeEventListener("touchend", this.touchEndHandler), window.removeEventListener("mouseup", this.touchEndHandler), window.removeEventListener("touchmove", this.touchMoveHandler, { passive: !0 }), window.removeEventListener("mousemove", this.touchMoveHandler), t.target.removeEventListener("click", this.clickHandler), this._renameDOMAttribute(t.target, "rocket-onclick", "onclick"), this._pendingClickFinished() } _onTouchEnd() { window.removeEventListener("touchend", this.touchEndHandler), window.removeEventListener("mouseup", this.touchEndHandler), window.removeEventListener("touchmove", this.touchMoveHandler, { passive: !0 }), window.removeEventListener("mousemove", this.touchMoveHandler) } _onClick(t) { t.target.removeEventListener("click", this.clickHandler), this._renameDOMAttribute(t.target, "rocket-onclick", "onclick"), this.interceptedClicks.push(t), t.preventDefault(), t.stopPropagation(), t.stopImmediatePropagation(), this._pendingClickFinished() } _replayClicks() { window.removeEventListener("touchstart", this.touchStartHandler, { passive: !0 }), window.removeEventListener("mousedown", this.touchStartHandler), this.interceptedClicks.forEach(t => { t.target.dispatchEvent(new MouseEvent("click", { view: t.view, bubbles: !0, cancelable: !0 })) }) } _waitForPendingClicks() { return new Promise(t => { this._isClickPending ? this._pendingClickFinished = t : t() }) } _pendingClickStarted() { this._isClickPending = !0 } _pendingClickFinished() { this._isClickPending = !1 } _renameDOMAttribute(t, e, r) { t.hasAttribute && t.hasAttribute(e) && (event.target.setAttribute(r, event.target.getAttribute(e)), event.target.removeAttribute(e)) } _triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } _preconnect3rdParties() { let t = []; document.querySelectorAll("script[type=rocketlazyloadscript][data-rocket-src]").forEach(e => { let r = e.getAttribute("data-rocket-src"); if (r && 0 !== r.indexOf("data:")) { 0 === r.indexOf("//") && (r = location.protocol + r); try { let i = new URL(r).origin; i !== location.origin && t.push({ src: i, crossOrigin: e.crossOrigin || "module" === e.getAttribute("data-rocket-type") }) } catch (n) { } } }), t = [...new Map(t.map(t => [JSON.stringify(t), t])).values()], this._batchInjectResourceHints(t, "preconnect") } async _loadEverythingNow() { this.lastBreath = Date.now(), this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async); try { await this._triggerDOMContentLoaded(), await this._pendingWebpackRequests(this), await this._triggerWindowLoad() } catch (t) { console.error(t) } window.dispatchEvent(new Event("rocket-allScriptsLoaded")), this._waitForPendingClicks().then(() => { this._replayClicks() }), this._emptyTrash() } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t => { t.hasAttribute("data-rocket-src") ? t.hasAttribute("async") && !1 !== t.async ? this.delayedScripts.async.push(t) : t.hasAttribute("defer") && !1 !== t.defer || "module" === t.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(t) : this.delayedScripts.normal.push(t) : this.delayedScripts.normal.push(t) }) } async _transformScript(t) { if (await this._littleBreath(), !0 === t.noModule && "noModule" in HTMLScriptElement.prototype) { t.setAttribute("data-rocket-status", "skipped"); return } return new Promise(navigator.userAgent.indexOf("Firefox/") > 0 || "" === navigator.vendor ? e => { let r = document.createElement("script");[...t.attributes].forEach(t => { let e = t.nodeName; "type" !== e && ("data-rocket-type" === e && (e = "type"), "data-rocket-src" === e && (e = "src"), r.setAttribute(e, t.nodeValue)) }), t.text && (r.text = t.text), r.hasAttribute("src") ? (r.addEventListener("load", e), r.addEventListener("error", e)) : (r.text = t.text, e()); try { t.parentNode.replaceChild(r, t) } catch (i) { e() } } : e => { function r() { t.setAttribute("data-rocket-status", "failed"), e() } try { let i = t.getAttribute("data-rocket-type"), n = t.getAttribute("data-rocket-src"); i ? (t.type = i, t.removeAttribute("data-rocket-type")) : t.removeAttribute("type"), t.addEventListener("load", function r() { t.setAttribute("data-rocket-status", "executed"), e() }), t.addEventListener("error", r), n ? (t.removeAttribute("data-rocket-src"), t.src = n) : t.src = "data:text/javascript;base64," + window.btoa(unescape(encodeURIComponent(t.text))) } catch (s) { r() } }) } async _loadScriptsFromList(t) { let e = t.shift(); return e && e.isConnected ? (await this._transformScript(e), this._loadScriptsFromList(t)) : Promise.resolve() } _preloadAllScripts() { this._batchInjectResourceHints([...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async], "preload") } _batchInjectResourceHints(t, e) { var r = document.createDocumentFragment(); t.forEach(t => { let i = t.getAttribute && t.getAttribute("data-rocket-src") || t.src; if (i) { let n = document.createElement("link"); n.href = i, n.rel = e, "preconnect" !== e && (n.as = "script"), t.getAttribute && "module" === t.getAttribute("data-rocket-type") && (n.crossOrigin = !0), t.crossOrigin && (n.crossOrigin = t.crossOrigin), t.integrity && (n.integrity = t.integrity), r.appendChild(n), this.trash.push(n) } }), document.head.appendChild(r) } _delayEventListeners() { let t = {}; function e(e, r) { !function e(r) { !t[r] && (t[r] = { originalFunctions: { add: r.addEventListener, remove: r.removeEventListener }, eventsToRewrite: [] }, r.addEventListener = function () { arguments[0] = i(arguments[0]), t[r].originalFunctions.add.apply(r, arguments) }, r.removeEventListener = function () { arguments[0] = i(arguments[0]), t[r].originalFunctions.remove.apply(r, arguments) }); function i(e) { return t[r].eventsToRewrite.indexOf(e) >= 0 ? "rocket-" + e : e } }(e), t[e].eventsToRewrite.push(r) } function r(t, e) { let r = t[e]; Object.defineProperty(t, e, { get: () => r || function () { }, set(i) { t["rocket" + e] = r = i } }) } e(document, "DOMContentLoaded"), e(window, "DOMContentLoaded"), e(window, "load"), e(window, "pageshow"), e(document, "readystatechange"), r(document, "onreadystatechange"), r(window, "onload"), r(window, "onpageshow") } _delayJQueryReady(t) { let e; function r(t) { return t.split(" ").map(t => "load" === t || 0 === t.indexOf("load.") ? "rocket-jquery-load" : t).join(" ") } function i(i) { if (i && i.fn && !t.allJQueries.includes(i)) { i.fn.ready = i.fn.init.prototype.ready = function (e) { return t.domReadyFired ? e.bind(document)(i) : document.addEventListener("rocket-DOMContentLoaded", () => e.bind(document)(i)), i([]) }; let n = i.fn.on; i.fn.on = i.fn.init.prototype.on = function () { return this[0] === window && ("string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = r(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach(t => { let e = arguments[0][t]; delete arguments[0][t], arguments[0][r(t)] = e })), n.apply(this, arguments), this }, t.allJQueries.push(i) } e = i } i(window.jQuery), Object.defineProperty(window, "jQuery", { get: () => e, set(t) { i(t) } }) } async _pendingWebpackRequests(t) { let e = document.querySelector("script[data-webpack]"); async function r() { return new Promise(t => { e.addEventListener("load", t), e.addEventListener("error", t) }) } e && (await r(), await t._requestAnimFrame(), await t._pendingWebpackRequests(t)) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._littleBreath(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._littleBreath(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._littleBreath(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._littleBreath(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._littleBreath(), window.dispatchEvent(new Event("rocket-load")), await this._littleBreath(), window.rocketonload && window.rocketonload(), await this._littleBreath(), this.allJQueries.forEach(t => t(window).trigger("rocket-jquery-load")), await this._littleBreath(); let t = new Event("rocket-pageshow"); t.persisted = this.persisted, window.dispatchEvent(t), await this._littleBreath(), window.rocketonpageshow && window.rocketonpageshow({ persisted: this.persisted }) } _handleDocumentWrite() { let t = new Map; document.write = document.writeln = function (e) { let r = document.currentScript; r || console.error("WPRocket unable to document.write this: " + e); let i = document.createRange(), n = r.parentElement, s = t.get(r); void 0 === s && (s = r.nextSibling, t.set(r, s)); let a = document.createDocumentFragment(); i.setStart(a, 0), a.appendChild(i.createContextualFragment(e)), n.insertBefore(a, s) } } async _littleBreath() { Date.now() - this.lastBreath > 45 && (await this._requestAnimFrame(), this.lastBreath = Date.now()) } async _requestAnimFrame() { return document.hidden ? new Promise(t => setTimeout(t)) : new Promise(t => requestAnimationFrame(t)) } _emptyTrash() { this.trash.forEach(t => t.remove()) } static run() { let t = new RocketLazyLoadScripts; t._addUserInteractionListener(t) } } RocketLazyLoadScripts.run();</script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="PrivallyApp"
+        data-rocket-src="https://app.privally.global/app.next.js" pid="b24d49-afe463" h-reject="true"></script>
+    ​
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ​
+    <!-- wp_head : start -->
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+    <!-- This site is optimized with the Yoast SEO plugin v21.7 - https://yoast.com/wordpress/plugins/seo/ -->
+    <title>15 habilidades e competências que valorizam o currículo</title>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css?family=Titillium%20Web%3A300%2C300i%2C400%2C400i%2C700%2C700i%7CLato%3A300%2C300i%2C400%2C400i%2C700%2C700i&#038;display=swap" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Titillium%20Web%3A300%2C300i%2C400%2C400i%2C700%2C700i%7CLato%3A300%2C300i%2C400%2C400i%2C700%2C700i&#038;display=swap"
+        media="print" onload="this.media='all'" /><noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Titillium%20Web%3A300%2C300i%2C400%2C400i%2C700%2C700i%7CLato%3A300%2C300i%2C400%2C400i%2C700%2C700i&#038;display=swap" />
+    </noscript>
+    <meta name="description"
+        content="Algumas habilidades e competências podem diferenciar você dos concorrentes durante o processo seletivo. Veja como atrair recrutadores para o seu currículo." />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="15 habilidades e competências que valorizam o currículo" />
+    <meta property="og:description"
+        content="Algumas habilidades e competências podem diferenciar você dos concorrentes durante o processo seletivo. Veja como atrair recrutadores para o seu currículo." />
+    <meta property="og:url" content="https://profissoes.vagas.com.br/habilidades-e-competencias/" />
+    <meta property="og:site_name" content="VAGAS Profissões" />
+    <meta property="article:publisher" content="https://www.facebook.com/VAGAScom/" />
+    <meta property="article:published_time" content="2022-01-12T03:10:00+00:00" />
+    <meta property="article:modified_time" content="2023-08-11T23:14:46+00:00" />
+    <meta property="og:image"
+        content="https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477-555x200.jpg" />
+    <meta property="og:image:width" content="555" />
+    <meta property="og:image:height" content="200" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="author" content="VAGAS.com" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@vagas" />
+    <meta name="twitter:site" content="@vagas" />
+    <meta name="twitter:label1" content="Escrito por" />
+    <meta name="twitter:data1" content="VAGAS.com" />
+    <meta name="twitter:label2" content="Est. tempo de leitura" />
+    <meta name="twitter:data2" content="6 minutos" />
+    <script type="application/ld+json"
+        class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://profissoes.vagas.com.br/habilidades-e-competencias/","url":"https://profissoes.vagas.com.br/habilidades-e-competencias/","name":"15 habilidades e competências que valorizam o currículo","isPartOf":{"@id":"https://profissoes.vagas.com.br/#website"},"primaryImageOfPage":{"@id":"https://profissoes.vagas.com.br/habilidades-e-competencias/#primaryimage"},"image":{"@id":"https://profissoes.vagas.com.br/habilidades-e-competencias/#primaryimage"},"thumbnailUrl":"https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477.jpg","datePublished":"2022-01-12T03:10:00+00:00","dateModified":"2023-08-11T23:14:46+00:00","author":{"@id":"https://profissoes.vagas.com.br/#/schema/person/120356e7ab06071adec912fc2c8c7b16"},"description":"Algumas habilidades e competências podem diferenciar você dos concorrentes durante o processo seletivo. Veja como atrair recrutadores para o seu currículo.","breadcrumb":{"@id":"https://profissoes.vagas.com.br/habilidades-e-competencias/#breadcrumb"},"inLanguage":"pt-BR","potentialAction":[{"@type":"ReadAction","target":["https://profissoes.vagas.com.br/habilidades-e-competencias/"]}]},{"@type":"ImageObject","inLanguage":"pt-BR","@id":"https://profissoes.vagas.com.br/habilidades-e-competencias/#primaryimage","url":"https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477.jpg","contentUrl":"https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477.jpg","width":2560,"height":998},{"@type":"BreadcrumbList","@id":"https://profissoes.vagas.com.br/habilidades-e-competencias/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://profissoes.vagas.com.br/"},{"@type":"ListItem","position":2,"name":"15 habilidades e competências para deixar o seu currículo perfeito"}]},{"@type":"WebSite","@id":"https://profissoes.vagas.com.br/#website","url":"https://profissoes.vagas.com.br/","name":"VAGAS Profissões","description":"Um novo olhar para sua carreira.","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://profissoes.vagas.com.br/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"pt-BR"},{"@type":"Person","@id":"https://profissoes.vagas.com.br/#/schema/person/120356e7ab06071adec912fc2c8c7b16","name":"VAGAS.com","image":{"@type":"ImageObject","inLanguage":"pt-BR","@id":"https://profissoes.vagas.com.br/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/ce32b630fd1de574e6b5f89dafffadb2?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/ce32b630fd1de574e6b5f89dafffadb2?s=96&d=mm&r=g","caption":"VAGAS.com"},"url":"https://profissoes.vagas.com.br/author/vagas-com/"}]}</script>
+    <!-- / Yoast SEO plugin. -->
+
+
+    <link rel='dns-prefetch' href='//profissoes.vagas.com.br' />
+    <link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+    <link rel="alternate" type="application/rss+xml"
+        title="Feed de comentários para VAGAS Profissões &raquo; 15 habilidades e competências para deixar o seu currículo perfeito"
+        href="https://profissoes.vagas.com.br/habilidades-e-competencias/feed/" />
+    <link rel='stylesheet' id='wp-block-library-css'
+        href='https://profissoes.vagas.com.br/wp-includes/css/dist/block-library/style.min.css?ver=6.4.1'
+        type='text/css' media='all' />
+    
+
+    <link rel='stylesheet' id='ez-toc-css'
+        href='https://profissoes.vagas.com.br/wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=2.0.61'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='wordpress-popular-posts-css-css'
+        href='https://profissoes.vagas.com.br/wp-content/plugins/wordpress-popular-posts/assets/css/wpp.css?ver=6.3.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='preload-style-css'
+        href='https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/css/preload-style.min.css?ver=1.2.55'
+        type='text/css' media='all' />
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/js/jquery-3.5.min.js?ver=6.4.1.3"
+        id="jquery-js"></script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/js/jquery-migrate-3.3.min.js?ver=6.4.1.3"
+        id="jquery-migrate-js"></script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/mu-plugins/chorus-core/integrations/script.js?ver=1"
+        id="chorus_integrations_main-js"></script>
+    <script type="application/json" id="wpp-json">
+
+{"sampling_active":0,"sampling_rate":100,"ajax_url":"https:\/\/profissoes.vagas.com.br\/wp-json\/wordpress-popular-posts\/v1\/popular-posts","api_url":"https:\/\/profissoes.vagas.com.br\/wp-json\/wordpress-popular-posts","ID":10799,"token":"2ebfe78399","lang":0,"debug":0}
+
+</script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/plugins/wordpress-popular-posts/assets/js/wpp.min.js?ver=6.3.4"
+        id="wpp-js-js"></script>
+    <link rel="https://api.w.org/" href="https://profissoes.vagas.com.br/wp-json/" />
+    <link rel="alternate" type="application/json" href="https://profissoes.vagas.com.br/wp-json/wp/v2/posts/10799" />
+    <link rel='shortlink' href='https://profissoes.vagas.com.br/?p=10799' />
+    <link rel="alternate" type="application/json+oembed"
+        href="https://profissoes.vagas.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fprofissoes.vagas.com.br%2Fhabilidades-e-competencias%2F" />
+    <link rel="alternate" type="text/xml+oembed"
+        href="https://profissoes.vagas.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fprofissoes.vagas.com.br%2Fhabilidades-e-competencias%2F&#038;format=xml" />
+
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+      window.chorusAnalytics_blogName = 'VAGAS Profissões';
+    </script>
+
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+        window.chorusAnalytics_postType              = 'post';
+        window.chorusAnalytics_postDate              =  1641946200;
+        window.chorusAnalytics_postAuthor            = 'VAGAS.com';
+        window.chorusAnalytics_postCategories        = '"[\"Busca de emprego\",\"home\",\"Processos seletivos\"]"';
+        window.chorusAnalytics_postTags              = '"[\"Processo Seletivo\"]"';
+        window.chorusAnalytics_postWordCount         =  1521;
+        window.chorusAnalytics_postPublishedByStudio =  false;
+      </script>
+
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+      window.addEventListener('load', function () {
+        if (!window.chorusAnalytics_isLoaded) {
+          
+          var rockAnalyticsScript_V2 = document.createElement('script');
+          rockAnalyticsScript_V2.type = 'text/javascript';
+          rockAnalyticsScript_V2.src =  'https://api.analytics.rockcontent.com/api/tracker?domain=profissoes.vagas.com.br';
+
+          var source = document.createAttribute('source');
+          source.value = 'stage';
+          rockAnalyticsScript_V2.setAttributeNode(source); 
+
+          rockAnalyticsScript_V2.async = false;
+          rockAnalyticsScript_V2.defer = 'defer';
+
+          var website = document.createAttribute('data-website-id');
+          website.value = 'There is no application with this url registered';
+          rockAnalyticsScript_V2.setAttributeNode(website); 
+
+          var host = document.createAttribute('data-host-url');
+          host.value = 'https://api.analytics.rockcontent.com';
+          rockAnalyticsScript_V2.setAttributeNode(host); 
+
+          document.body.appendChild(rockAnalyticsScript_V2);
+    
+        }
+      });
+    </script>
+    <script
+        type="rocketlazyloadscript">window.chorusAnalytics_integrationsUrl = "https:\/\/profissoes.vagas.com.br\/wp-json\/chorus-core\/v1\/integrations";</script>
+    <!-- Vagas.com Begin TailTarget -->
+    <script type="rocketlazyloadscript">
+    (function(i) {
+      var ts = document.createElement('script');
+      ts.type = 'text/javascript';
+      ts.async = true;
+      ts.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'tags.t.tailtarget.com/t3m.js?i=' + i;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ts, s);
+    })('TT-10235-0/CT-30');
+  </script>
+    <!-- Vagas.com End TailTarget -->
+
+
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+  var PREBID_TIMEOUT = 2000;
+
+  var adUnits = [];
+    adUnits.push(
+    {
+      code: "vp_materias_square_300x250",
+      sizes: [300, 250],
+      bids: [
+        {"bidder":"appnexus","params":{"placementId":"13020908"}},
+        {"bidder":"rubicon","params":{
+          "accountId":"15452",
+          "siteId":"97752",
+          "zoneId":"458742",
+          "sizes":[15]
+        }},
+        {"bidder":"criteo","params":{"zoneId":"1114156"}}
+      ]
+    }
+  );
+    adUnits.push(
+    {
+      code: "vp_materias_halfpage_300x600",
+      sizes: [300, 600],
+      bids: [
+        {"bidder":"appnexus","params":{"placementId":"13020917"}},
+        {"bidder":"rubicon","params":{
+          "accountId":"15452",
+          "siteId":"97752",
+          "zoneId":"458742",
+          "sizes":[10]
+        }},
+        {"bidder":"criteo","params":{"zoneId":"1114157"}}
+      ]
+    }
+  );
+    adUnits.push(
+    {
+      code: "vp_materias_leaderboard_728x90",
+      sizes: [728, 90],
+      bids: [
+        {"bidder":"appnexus","params":{"placementId":"13020891"}},
+        {"bidder":"rubicon","params":{
+          "accountId":"15452",
+          "siteId":"97752",
+          "zoneId":"458742",
+          "sizes":[2]
+        }},
+        {"bidder":"criteo","params":{"zoneId":"1114158"}}
+      ]
+    }
+  );
+    adUnits.push(
+    {
+      code: "vp_mobile_materias_leaderboard_320x50",
+      sizes: [320, 50],
+      bids: [
+        {"bidder":"appnexus","params":{"placementId":"13020921"}},
+        {"bidder":"rubicon","params":{
+          "accountId":"15452",
+          "siteId":"134114",
+          "zoneId":"633542",
+          "sizes":[43]
+        }},
+        {"bidder":"criteo","params":{"zoneId":"1114159"}}
+      ]
+    }
+  );
+    
+  var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+
+  (function() {
+      var d = document,
+          e = d.createElement('script'),
+          p = d.getElementsByTagName('head')[0];
+      e.type = 'text/javascript';
+      e.async = true;
+      e.src = 'https://www.vagas.com.br/scripts/publicidade/prebid_with_currency.js';
+      p.insertBefore(e, p.firstChild);
+  })();
+
+  pbjs.que.push(function() {
+      const customGranularity = {
+          'buckets': [{'min': 0, 'max': 50, 'increment': 0.01 }]
+      };
+      pbjs.setConfig({
+          priceGranularity: customGranularity,
+          currency: {
+              adServerCurrency: "BRL",
+              granularityMultiplier: 1,
+              conversionRateFile: "https://currency.prebid.org/latest.json"
+          }
+      })
+  });
+</script>
+    <!-- Prebid Config Section END -->
+
+    <!-- Prebid Boilerplate Section START. -->
+    <script type="rocketlazyloadscript">
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+googletag.cmd.push(function() {
+    googletag.pubads().disableInitialLoad();
+});
+
+pbjs.que.push(function() {
+    pbjs.addAdUnits(adUnits);
+    pbjs.requestBids({
+        bidsBackHandler: sendAdserverRequest
+    });
+});
+
+function sendAdserverRequest() {
+    if (pbjs.adserverRequestSent) return;
+    pbjs.adserverRequestSent = true;
+    googletag.cmd.push(function() {
+        pbjs.que.push(function() {
+            pbjs.setTargetingForGPTAsync();
+            googletag.pubads().refresh();
+        });
+    });
+}
+
+setTimeout(function() {
+    sendAdserverRequest();
+}, PREBID_TIMEOUT);
+
+</script>
+    <!-- Prebid Boilerplate Section END -->
+
+    <!-- Vagas.com Begin Google Publisher Tag -->
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+var getTailTargetParam = function(a) {
+  var ttCookieName = "_ttdmp";
+  if (!window._ttprofilescache) {
+    window._ttprofilescache = {};
+    try {
+      var c = document.cookie.match('(^|;)\\s*' + ttCookieName + '\\s*=\\s*([^;]+)');
+      var d = c ? c.pop().split('|') : [];
+      for (var i = 0; i < d.length; i++) {
+        var kv = d[i].split(":");
+        if (kv[1] && kv[1].indexOf(",") > 0) {
+            window._ttprofilescache[kv[0]] = kv[1].split(",");
+        } else {
+            window._ttprofilescache[kv[0]] = kv[1];
+        }
+      }
+    } catch (e) {
+    }
+  }
+  return window._ttprofilescache[a] ? window._ttprofilescache[a] : 'na';
+};
+
+(function () {
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') +
+            '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+})();
+
+googletag.cmd.push(function () {
+  
+    
+    googletag.defineSlot('/1721836/vp_materias_square_300x250', [300, 250], 'vp_materias_square_300x250').addService(googletag.pubads());
+
+
+    googletag.defineSlot('/1721836/vp_materias_halfpage_300x600', [300, 600], 'vp_materias_halfpage_300x600').addService(googletag.pubads());
+
+
+    googletag.defineSlot('/1721836/vp_materias_leaderboard_728x90', [728, 90], 'vp_materias_leaderboard_728x90').addService(googletag.pubads());
+
+
+    googletag.defineSlot('/1721836/vp_mobile_materias_leaderboard_320x50', [320, 50], 'vp_mobile_materias_leaderboard_320x50').addService(googletag.pubads());
+
+
+    googletag.pubads().setTargeting("ttLS", getTailTargetParam('LS'));
+    googletag.pubads().setTargeting("ttS", getTailTargetParam('S'));
+    googletag.pubads().setTargeting("ttT", getTailTargetParam('T'));
+    googletag.pubads().setTargeting("ttC", getTailTargetParam('C'));
+    googletag.pubads().setTargeting("ttU", getTailTargetParam('U'));
+    googletag.pubads().setTargeting("ttE", getTailTargetParam('E'));
+    googletag.pubads().setTargeting("ttA", getTailTargetParam('A'));
+    googletag.pubads().setTargeting("ttG", getTailTargetParam('G'));
+    googletag.pubads().setTargeting("ttCA", getTailTargetParam('CA'));
+    
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+});
+
+</script>
+    <!-- END Vagas.com Google Publisher Tag -->
+
+    <link rel='amphtml' href='https://profissoes.vagas.com.br/habilidades-e-competencias/amp/'>
+    <link rel="amphtml" href="https://profissoes.vagas.com.br/habilidades-e-competencias/amp/">
+    <!-- vagasp_head_js_variables -->
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+    var ajaxurl   = 'https://profissoes.vagas.com.br/wp-admin/admin-ajax.php';
+    var home_url  = 'https://profissoes.vagas.com.br/';
+    var theme_url = 'https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/';
+    </script>
+
+    
+    <!-- wp_head : end -->
+    ​
+    <meta name="google-site-verification" content="8RAoGNaeZKLFovvco4xr8jjIh--7shfctkzK4Yokm-4" />
+</head>
+
+<body class="post-template-default single single-post postid-10799 single-format-standard habilidades-e-competencias">
+    <!-- Google Tag Manager -->
+    <script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-52H238');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52H238" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- header -->
+    <header class="header clear" style="background-color: #181D2E;">
+        <div class="container">
+            <div class="row">
+                <!-- logo -->
+                <div class="logo col-md-3 col-sm-12 col-xs-12">
+                    <p><a href="index.php"><span class="vagas_profissoes_logo">Vagas
+                                profissões</span></a></p>
+                    ​
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#menu-main" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div id="search-mobile">
+                        <input type="hidden" id="_wpnonce" name="_wpnonce" value="8702e425ac" />
+                        <form method='get' action='https://profissoes.vagas.com.br/' id='mobile-search-form'
+                            class='header-search-form'>
+                            <label for='mobile-search-term' class=''></label>
+                            <div class='form-group'>
+                                <div class="input-group">
+                                    <span class='input-group-addon'><span id='mobile-close-search'
+                                            class='header-search-form-close'></span></span>
+                                    <input type="hidden" id="_wpnonce" name="_wpnonce" value="8702e425ac" />
+                                    <input type='text' class='form-control' placeholder='Pesquise no VAGAS profissões'
+                                        id='mobile-search-term' name='s' value='' />
+                                    <div class="input-group-btn">
+                                        <button type='submit' class='btn header-search-submit'
+                                            id='mobile-search-submit-btn'></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </header>
+    <!-- /header -->
+    <main role="main">
+
+
+
+        <section class="container" id="post-single">
+            <div class="row">
+                
+                <div class="col-md-6">
+                    <article id="post-10799"
+                        class="post-10799 post type-post status-publish format-standard has-post-thumbnail hentry category-busca-emprego category-home category-processos-seletivos tag-processo-seletivo">
+                        
+                                <h1 class="post-title">15 habilidades e competências para deixar o seu currículo perfeito</h1>
+                            <h2 class='post-subtitle'>Atraia a atenção dos recrutadores com as melhores habilidades para
+                            colocar no currículo</h2>
+                            <div class="single-post-thumbnail">
+                            <img src="https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477-555x216.jpg"
+                                class="attachment-large size-large wp-post-image" alt="" decoding="async"
+                                fetchpriority="high"
+                                srcset="https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477-555x216.jpg 555w, https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477-768x299.jpg 768w, https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477-1536x599.jpg 1536w, https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477-2048x798.jpg 2048w"
+                                sizes="(max-width: 555px) 100vw, 555px" />
+                        </div>
+
+                        <div class="post-body">
+                            <p><span style="font-weight: 400;">Algumas</span><b> habilidades e competências </b><span
+                                    style="font-weight: 400;">são importantes durante toda a vida profissional e,
+                                    especialmente no processo seletivo, podem fazer a diferença entre você ser &#8211;
+                                    ou não &#8211; convidado para uma entrevista de emprego. </span></p>
+                            <p><span style="font-weight: 400;">As capacidades de <a
+                                        href="https://profissoes.vagas.com.br/como-trabalhar-sob-pressao-sem-perder-saude-e-produtividade/"
+                                        target="_blank" rel="noopener">trabalhar sob pressão</a> e de forma autônoma
+                                    &#8211; cumprindo o que deve fazer, mesmo quando ninguém olhando -, por exemplo, são
+                                    cada vez mais valorizadas pelas empresas. </span></p>
+                            <p>Neste post, vamos listar habilidades e competências profissionais que podem fazer a
+                                diferença para você conquistar uma vaga quanto para se desenvolver na empresa em que
+                                trabalha quando houver oportunidade para uma promoção.</p>
+                            
+                            <h3><span class="ez-toc-section" id="o-que-significa-habilidades"></span><b>O que significa
+                                    habilidades?</b><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Habilidades são as aptidões que um indivíduo possui, ou
+                                    em outras palavras, são as qualidades de um indivíduo hábil. Quando uma pessoa
+                                    consegue efetuar uma tarefa bem feita podemos dizer que ela é uma pessoa
+                                    habilidosa.</span></p>
+                            <h3><span class="ez-toc-section"
+                                    id="qual-e-a-diferenca-entre-habilidades-e-competencias"></span><b>Qual é a
+                                    diferença entre habilidades e competências?</b><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p>As habilidades são qualidades que um profissional possui naturalmente para desenvolver
+                                algo. Já as competências, são atributos que são desenvolvidos ou aperfeiçoados através
+                                de experiências ao longo da carreira.</p>
+                            <p>Competências e habilidades são as capacidades profissionais que uma pessoa tem para
+                                realizar a sua função e se desenvolver na carreira. Os dois termos muitas vezes são
+                                utilizados como sinônimo. No entanto, apesar de serem muito próximos, eles têm algumas
+                                diferenças importantes entre si.</p>
+                            <p><span style="font-weight: 400;">As habilidades, por outro lado, são qualidades que uma
+                                    pessoa tem naturalmente para fazer alguma coisa. Ou seja, enquanto a competência
+                                    pode ser aprendida, a habilidade geralmente é algo da própria pessoa e nasce com
+                                    ela. </span></p>
+                            <p>Você pode, por exemplo, ter habilidade profissional com números. É uma característica sua
+                                que ajuda a resolver problemas matemáticos. No entanto, você pode fazer um curso de
+                                cálculo para desenvolver essa competência para colocar no currículo. Se você precisa
+                                dessa habilidade para colocar no currículo do primeiro emprego, precisa desenvolver essa
+                                competência com mais facilidade. No entanto, se você não for exatamente um expert em
+                                matemática, terá de se esforçar mais, mas ainda assim poderá desenvolver essa
+                                competência. Entende a diferença?</p>
+                            <h2><span class="ez-toc-section" id="o-que-e-habilidade-profissional"></span><b>O que é
+                                    habilidade profissional?</b><span class="ez-toc-section-end"></span></h2>
+                            <p><span style="font-weight: 400;">As habilidades profissionais são competências que
+                                    permitem a execução das atividades de maneira eficiente em cada área de
+                                    atuação.</span></p>
+                            <h2><span class="ez-toc-section"
+                                    id="o-que-colocar-em-habilidades-e-competencias-no-curriculo"></span><strong>O que
+                                    colocar em habilidades e competências no currículo?</strong><span
+                                    class="ez-toc-section-end"></span></h2>
+                            <p><span style="font-weight: 400;">Como é o profissional que as empresas mais valorizam
+                                    atualmente? Com certeza é alguém que sabe lidar com desafios, consegue se comunicar
+                                    bem e é capaz de trabalhar com disciplina mesmo remotamente. Confira a seguir 15
+                                    habilidades e competências que podem fazer toda a diferença na sua carreira neste
+                                    momento. </span></p>
+                            <h2><span class="ez-toc-section"
+                                    id="exemplos-de-competencias-e-habilidades-para-colocar-no-curriculo"></span><span
+                                    style="font-weight: 400;">Exemplos de competências e habilidades para colocar no
+                                    currículo</span><span class="ez-toc-section-end"></span></h2>
+                            <p><span style="font-weight: 400;">Como é o profissional que as empresas mais valorizam
+                                    atualmente? </span></p>
+                            <p><span style="font-weight: 400;">Com certeza é alguém que sabe lidar com desafios,
+                                    consegue se comunicar bem e é capaz de trabalhar com disciplina mesmo remotamente.
+                                    Entre as habilidades essenciais em um currículo, podemos listar: </span></p>
+                            <ol>
+                                <li><span style="font-weight: 400;"> Relacionamento </span></li>
+                                <li><span style="font-weight: 400;"> Pensamento criativo </span></li>
+                                <li><span style="font-weight: 400;"> Autoconfiança </span></li>
+                                <li><span style="font-weight: 400;"> Proatividade </span></li>
+                                <li><span style="font-weight: 400;"> Trabalho em equipe </span></li>
+                                <li><span style="font-weight: 400;"> Conhecimento técnico e aprendizado contínuo</span>
+                                </li>
+                                <li><span style="font-weight: 400;"> Liderança</span></li>
+                                <li><span style="font-weight: 400;"> Foco em resultados</span></li>
+                                <li><span style="font-weight: 400;"> Pensamento de dono</span></li>
+                                <li><span style="font-weight: 400;"> Inteligência emocional</span></li>
+                                <li><span style="font-weight: 400;"> Flexibilidade e capacidade de se adaptar a
+                                        mudanças</span></li>
+                                <li><span style="font-weight: 400;"> Resiliência profissional</span></li>
+                                <li><span style="font-weight: 400;"> Capacidade de trabalhar remotamente</span></li>
+                                <li><span style="font-weight: 400;"> Comprometimento</span></li>
+                                <li><span style="font-weight: 400;"> Capacidade de inovação</span></li>
+                            </ol>
+                            <h2><span class="ez-toc-section"
+                                    id="15-exemplos-de-habilidades-para-se-colocar-no-curriculo"></span><b>15 exemplos
+                                    de habilidades para se colocar no currículo</b><span
+                                    class="ez-toc-section-end"></span></h2>
+                            <h3><span class="ez-toc-section" id="1-relacionamento"></span><strong>1. Relacionamento
+                                </strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Saber se comunicar é importante para praticamente todo
+                                    trabalho que você quiser desenvolver. Empresas valorizam pessoas que sabem se
+                                    expressar, que conseguem transmitir ideias com clareza. É importante lembrar que a
+                                    boa comunicação ainda inclui a capacidade de ouvir e entender o que é dito. </span>
+                            </p>
+                            <h3><span class="ez-toc-section" id="2-pensamento-criativo"></span><strong>2. Pensamento
+                                    criativo</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">A capacidade de buscar soluções não convencionais e
+                                    “pensar fora da caixa” é muito relevante para que empresas de todos os segmentos
+                                    continuem relevantes para seus consumidores. Para saber como melhorar essa
+                                    competência, confira </span><a
+                                    href="https://profissoes.vagas.com.br/6-passos-para-desenvolver-sua-criatividade/"><span
+                                        style="font-weight: 400;">6 passos para desenvolver sua
+                                        criatividade</span></a><span style="font-weight: 400;">. </span></p>
+                            <h3><span class="ez-toc-section" id="3-autoconfianca"></span><strong>3.</strong><strong>
+                                    Autoconfiança</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Pessoas que conseguem se autogerenciar e pensar no que
+                                    deve ser feito sem que ninguém precise dizer são sempre valorizadas nas
+                                    empresas.</span></p>
+                            <h3><span class="ez-toc-section" id="4-proatividade"></span><strong>4.
+                                    Proatividade</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">O que é um profissional “mão na massa”? É aquele que se
+                                    envolve com os projetos, encara os desafios e não mede esforços para ajudar a
+                                    alcançar os objetivos da empresa. </span></p>
+                            <h3><span class="ez-toc-section" id="5-trabalho-em-equipe"></span><strong>5.
+                                </strong><strong>Trabalho em equipe</strong><span class="ez-toc-section-end"></span>
+                            </h3>
+                            <p><span style="font-weight: 400;">Situações complexas exigem mais jogo de cintura para
+                                    colaborar e trabalhar em equipe. Mesmo que cada um esteja fisicamente em um lugar, o
+                                    trabalho precisa fluir bem entre todos. Quer saber mais? </span><a
+                                    href="https://profissoes.vagas.com.br/5-passos-para-fazer-o-trabalho-em-equipe-funcionar/"><span
+                                        style="font-weight: 400;">6 passos para melhorar o trabalho em
+                                        equipe</span></a><span style="font-weight: 400;">.</span></p>
+                            <h3><span class="ez-toc-section"
+                                    id="6-conhecimento-tecnico-e-aprendizado-continuo"></span><strong>6. Conhecimento
+                                    técnico e aprendizado contínuo</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Tudo muda o tempo todo. Por isso, profissionais se mantêm
+                                    atualizados por conta própria, buscando cursos, seminários, livros que ajudem a
+                                    desenvolver novos conhecimentos são jóias raras para os empregadores. </span></p>
+                            <h3><span class="ez-toc-section" id="7-lideranca"></span><strong>7.
+                                </strong><strong>Liderança</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">A liderança não é importante apenas para aqueles que
+                                    ocupam cargos de gestão. A capacidade de envolver e motivar as pessoas para <a
+                                        href="https://profissoes.vagas.com.br/dicas-alcancar-metas/">atingir as
+                                        metas</a> da empresa é sempre bem-vinda, em qualquer área de qualquer segmento
+                                    de empresas de todos os portes. Está começando agora? Confira </span><a
+                                    href="https://profissoes.vagas.com.br/desenvolver-lideranca-inicio-da-carreira/"><span
+                                        style="font-weight: 400;">Como desenvolver liderança no início da
+                                        carreira</span></a><span style="font-weight: 400;">.</span></p>
+                            <h3><span class="ez-toc-section" id="8-foco-em-resultados"></span><strong>8.
+                                </strong><strong>Foco em resultados</strong><span class="ez-toc-section-end"></span>
+                            </h3>
+                            <p><span style="font-weight: 400;">Ter <a
+                                        href="https://profissoes.vagas.com.br/voce-tem-foco-em-resultados/">foco em
+                                        resultados</a> significa ser capaz de empenhar a sua energia para alcançar a
+                                    meta proposta para você. As empresas valorizam esse perfil profissional porque elas
+                                    mesmas precisam alcançar resultados cada vez melhores com menos recursos. Para saber
+                                    se você tem essa competência e como pode desenvolvê-la confira nosso post </span><a
+                                    href="https://profissoes.vagas.com.br/voce-tem-foco-em-resultados/"><span
+                                        style="font-weight: 400;">Aprenda a mostrar resultados e ser notado no
+                                        trabalho</span></a><span style="font-weight: 400;">.</span></p>
+                            <h3><span class="ez-toc-section" id="9-pensamento-de-dono"></span><strong>9.
+                                </strong><strong>Pensamento de dono</strong><span class="ez-toc-section-end"></span>
+                            </h3>
+                            <p><span style="font-weight: 400;">Você trabalha como se a empresa fosse sua? Essa postura
+                                    também é bem-vinda nas empresas, que cada vez mais precisam de profissionais que
+                                    enxergam soluções onde a maioria só vê problemas. </span></p>
+                            <h3><span class="ez-toc-section" id="10-inteligencia-emocional"></span><strong>10.
+                                </strong><strong>Inteligência emocional</strong><span class="ez-toc-section-end"></span>
+                            </h3>
+                            <p><span style="font-weight: 400;">Em situações caóticas, a inteligência emocional é
+                                    necessária para <a
+                                        href="https://profissoes.vagas.com.br/5-estrategias-para-manter-o-foco-no-trabalho/">manter
+                                        o foc</a>o e a produtividade. Para saber mais, confira </span><a
+                                    href="https://profissoes.vagas.com.br/inteligencia-emocional-trabalho/"><span
+                                        style="font-weight: 400;">Inteligência emocional no trabalho: saiba se você tem
+                                        e como desenvolver</span></a><span style="font-weight: 400;">.</span></p>
+                            <h3><span class="ez-toc-section"
+                                    id="11-flexibilidade-e-capacidade-de-se-adaptar-a-mudancas"></span><strong>11.
+                                </strong><strong>Flexibilidade e capacidade de se adaptar a mudanças</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Essa competência muitas vezes aparece até como requisito
+                                    para determinadas vagas. Empresas precisam de profissionais que consigam manter a
+                                    qualidade das entregas mesmo em situações adversas e que mudam rapidamente. Saiba
+                                    mais sobre esta competência no nosso post </span><a
+                                    href="https://profissoes.vagas.com.br/novo-perfil-profissional-valoriza-capacidade-de-adaptacao/"><span
+                                        style="font-weight: 400;">Novo perfil profissional valoriza capacidade de
+                                        adaptação</span></a><span style="font-weight: 400;">.</span></p>
+                            <h3><span class="ez-toc-section" id="12-resiliencia-profissional"></span><strong>12.
+                                </strong><strong>Resiliência profissional</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Resiliência é a capacidade de se manter “inteiro” (e
+                                    produtivo) mesmo em situações complicadas em que há muita tensão e pressão por
+                                    resultados. Se você não conhece muito bem esse termo e quer entender melhor, confira
+                                </span><a
+                                    href="https://profissoes.vagas.com.br/6-passos-para-desenvolver-sua-criatividade/"><span
+                                        style="font-weight: 400;">Resiliência profissional: o que é e como
+                                        desenvolvê-la</span></a><span style="font-weight: 400;">. </span></p>
+                            <h3><span class="ez-toc-section"
+                                    id="13-capacidade-de-trabalhar-remotamente"></span><strong>13. Capacidade de
+                                    trabalhar remotamente</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Há quem diga que os escritórios nunca mais serão os
+                                    mesmos. E faz sentido considerando que muitas empresas entenderam que pelo menos
+                                    parte da sua equipe pode trabalhar remotamente. Se você já desenvolveu essa
+                                    capacidade e se adaptou bem ao home office, pode considerar que já tenha alguns
+                                    pontos positivos no currículo. Precisa de uma ajuda? Temos este post para você:
+                                </span><a
+                                    href="https://profissoes.vagas.com.br/dicas-para-ser-produtivo-em-home-office/"><span
+                                        style="font-weight: 400;">10 dicas para ser produtivo em home
+                                        office</span></a><span style="font-weight: 400;">.</span></p>
+                            <h3><span class="ez-toc-section" id="14-comprometimento"></span><strong><span
+                                        style="color: initial;">14. Comprometimento</span></strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Nada de ser aquele profissional que faz somente o
+                                    necessário, independentemente do que esteja acontecendo na empresa ou nas suas
+                                    entregas. Se você quiser se destacar, precisa ter e demonstrar comprometimento – com
+                                    a empresa, com os objetivos e com as necessidades da equipe. </span></p>
+                            <h3><span class="ez-toc-section" id="15-capacidade-de-inovacao"></span><strong>15.
+                                    Capacidade de inovação</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Toda empresa precisa inovar ou corre o risco de
+                                    desaparecer. E, para inovar, a empresa precisa de profissionais capazes de gerar
+                                    novas ideias, avaliar riscos, buscar referências. Essa é uma daquelas competências
+                                    que devem ter vida longa no mercado de trabalho. Precisa ser mais inovador? Podemos
+                                    ajudar: </span><a
+                                    href="https://profissoes.vagas.com.br/5-dicas-para-aumentar-sua-capacidade-de-inovacao/"><span
+                                        style="font-weight: 400;">5 dicas para aumentar sua capacidade de
+                                        inovação</span></a><span style="font-weight: 400;">.</span></p>
+                            
+                            <h2><span class="ez-toc-section"
+                                    id="como-falar-das-minhas-qualidades-no-curriculo"></span>Como falar das minhas
+                                qualidades no currículo?<span class="ez-toc-section-end"></span></h2>
+                            <p>Faça uma lista das principais qualidades para colocar no currículo e não exagere. Foque
+                                no que realmente você se destaca tanto nas habilidades e competências das <a
+                                    href="https://profissoes.vagas.com.br/soft-skills/">soft skills (competências
+                                    comportamentais)</a> e hard skills (habilidades técnicas).</p>
+                            <h3><span class="ez-toc-section" id="exemplos-de-soft-skills"></span>Exemplos de soft
+                                skills:<span class="ez-toc-section-end"></span></h3>
+                            <ul>
+                                <li>Boa capacidade de comunicação.</li>
+                                <li>Facilidade de interagir com as pessoas;</li>
+                                <li>Pensamento crítico;</li>
+                                <li>Trabalho em equipe.</li>
+                            </ul>
+                            <h3><span class="ez-toc-section" id="exemplos-de-hard-skills"></span>Exemplos de hard
+                                skills:<span class="ez-toc-section-end"></span></h3>
+                            <ul>
+                                <li>Inglês avançado;</li>
+                                <li>Conhecimento de Pacote Office;</li>
+                                <li>Pós-graduação em Administração;</li>
+                                <li>Domínio em mídias sociais.</li>
+                            </ul>
+                            <p><a href="https://www.vagas.com.br/cadastrar-curriculo?origem-vagas=vp-post"><span
+                                        style="font-weight: 400;">Cadastre seu currículo</span></a><span
+                                    style="font-weight: 400;"> no </span><a
+                                    href="https://www.vagas.com.br/?origem-vagas=vp-post"><span
+                                        style="font-weight: 400;">VAGAS.com.br</span></a><span
+                                    style="font-weight: 400;"> e aproveite inúmeras oportunidades de emprego. Se você já
+                                    tem um cadastro, </span><a
+                                    href="https://www.vagas.com.br/servicos/curriculo?origem-vagas=vp-post"><span
+                                        style="font-weight: 400;">atualize-o</span></a><span style="font-weight: 400;">
+                                    aqui.</span></p>
+
+
+                            
+
+    </main>
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://profissoes.vagas.com.br/habilidades-e-competencias/"
+      },
+      "headline": "15 habilidades e competências para deixar o seu currículo perfeito",
+      "image": "https://profissoes.vagas.com.br/wp-content/uploads/2019/11/habilidades-e-competencias-scaled-e1614940937477-263x200.jpg",
+      "datePublished": "2022-01-12T00:10:00-03:00",
+      "dateModified": "2023-08-11T20:14:46-03:00",
+      "author": {
+        "@type": "Organization",
+        "name": "VAGAS Profissões"
+      },
+
+      "publisher": {
+        "@type": "Organization",
+        "name": "VAGAS Profissões",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.vagas.com.br/profissoes/wp-content/themes/profissoes-v2/img/logo_vagas_profissoes.png"
+        }
+      },
+      "description": "Algumas habilidades e competências podem diferenciar você dos concorrentes durante o processo seletivo. Veja como atrair recrutadores para o seu currículo."
+    }
+  </script>
+
+  <footer id="footer" role="contentinfo">
+        <div class="container" id="footer-info">
+            <div class="row links-footer-menus">
+                <div class="col-md-4">
+                    <p>Dicas para atualizar o currículo</p>
+                    <ul class="list-unstyled">
+                        <li><a href='https://profissoes.vagas.com.br/atualizar-curriculo'>Atualizar currículo: O guia
+                                definitivo</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/dicas-de-seo-para-curriculo-aparecer'>Dicas para
+                                seu currículo se destacar</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/voce-e-junior-pleno-ou-senior'>Júnior, pleno ou
+                                sênior: qual colocar no CV?</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <p>Dicas para procurar emprego</p>
+                    <ul class="list-unstyled">
+                        <li><a href='https://profissoes.vagas.com.br/conseguir-emprego-pelo-vagas'>Como conseguir
+                                emprego pelo VAGAS?</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/como-conseguir-emprego-sem-ter-experiencia'>Conseguir
+                                emprego sem experiência</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/como-fazer-entrevista-de-emprego-pode-x-nao-pode'>Como
+                                fazer entrevista de emprego</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <p>Dicas para sua carreira</p>
+                    <ul class="list-unstyled">
+                        <li><a
+                                href='https://profissoes.vagas.com.br/3-etapas-para-planejar-carreira-profissional-e-crescer'>Como
+                                planejar carreira profissional?</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/uma-nova-carreira-apos-os-40-anos-e-possivel'>Tenha
+                                uma nova carreira aos 40 anos</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/7-profissoes-futuro-em-alta'>Quais são as
+                                profissões do futuro?</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <span class="logo-footer"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class='footer-title'>VagasPinhal Profissões: tudo para seu desenvolvimento profissional</span>
+                    <p>Somos o portal de conteúdo da VagasPinhal.com, o maior site de carreiras da cidade. Aqui você encontra
+                        dicas sobre planejamento de carreira, artigos de especialistas, informações para alavancar suas
+                        habilidades profissionais, além de acompanhar as tendências de mercado.</p>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="container" id="copyright">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="index.php"><strong>Vagas</strong></a>
+                    Copyright© 2024 VagasPinhal.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </body>
+
+</html>
