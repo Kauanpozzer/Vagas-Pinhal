@@ -1,0 +1,1360 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <script>if (navigator.userAgent.match(/MSIE|Internet Explorer/i) || navigator.userAgent.match(/Trident\/7\..*?rv:11/i)) { var href = document.location.href; if (!href.match(/[?&]nowprocket/)) { if (href.indexOf("?") == -1) { if (href.indexOf("#") == -1) { document.location.href = href + "?nowprocket=1" } else { document.location.href = href.replace("#", "?nowprocket=1#") } } else { if (href.indexOf("#") == -1) { document.location.href = href + "&nowprocket=1" } else { document.location.href = href.replace("#", "&nowprocket=1#") } } } }</script>
+    <script>class RocketLazyLoadScripts { constructor() { this.v = "1.2.4", this.triggerEvents = ["keydown", "mousedown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"], this.userEventHandler = this._triggerListener.bind(this), this.touchStartHandler = this._onTouchStart.bind(this), this.touchMoveHandler = this._onTouchMove.bind(this), this.touchEndHandler = this._onTouchEnd.bind(this), this.clickHandler = this._onClick.bind(this), this.interceptedClicks = [], window.addEventListener("pageshow", t => { this.persisted = t.persisted }), window.addEventListener("DOMContentLoaded", () => { this._preconnect3rdParties() }), this.delayedScripts = { normal: [], async: [], defer: [] }, this.trash = [], this.allJQueries = [] } _addUserInteractionListener(t) { if (document.hidden) { t._triggerListener(); return } this.triggerEvents.forEach(e => window.addEventListener(e, t.userEventHandler, { passive: !0 })), window.addEventListener("touchstart", t.touchStartHandler, { passive: !0 }), window.addEventListener("mousedown", t.touchStartHandler), document.addEventListener("visibilitychange", t.userEventHandler) } _removeUserInteractionListener() { this.triggerEvents.forEach(t => window.removeEventListener(t, this.userEventHandler, { passive: !0 })), document.removeEventListener("visibilitychange", this.userEventHandler) } _onTouchStart(t) { "HTML" !== t.target.tagName && (window.addEventListener("touchend", this.touchEndHandler), window.addEventListener("mouseup", this.touchEndHandler), window.addEventListener("touchmove", this.touchMoveHandler, { passive: !0 }), window.addEventListener("mousemove", this.touchMoveHandler), t.target.addEventListener("click", this.clickHandler), this._renameDOMAttribute(t.target, "onclick", "rocket-onclick"), this._pendingClickStarted()) } _onTouchMove(t) { window.removeEventListener("touchend", this.touchEndHandler), window.removeEventListener("mouseup", this.touchEndHandler), window.removeEventListener("touchmove", this.touchMoveHandler, { passive: !0 }), window.removeEventListener("mousemove", this.touchMoveHandler), t.target.removeEventListener("click", this.clickHandler), this._renameDOMAttribute(t.target, "rocket-onclick", "onclick"), this._pendingClickFinished() } _onTouchEnd() { window.removeEventListener("touchend", this.touchEndHandler), window.removeEventListener("mouseup", this.touchEndHandler), window.removeEventListener("touchmove", this.touchMoveHandler, { passive: !0 }), window.removeEventListener("mousemove", this.touchMoveHandler) } _onClick(t) { t.target.removeEventListener("click", this.clickHandler), this._renameDOMAttribute(t.target, "rocket-onclick", "onclick"), this.interceptedClicks.push(t), t.preventDefault(), t.stopPropagation(), t.stopImmediatePropagation(), this._pendingClickFinished() } _replayClicks() { window.removeEventListener("touchstart", this.touchStartHandler, { passive: !0 }), window.removeEventListener("mousedown", this.touchStartHandler), this.interceptedClicks.forEach(t => { t.target.dispatchEvent(new MouseEvent("click", { view: t.view, bubbles: !0, cancelable: !0 })) }) } _waitForPendingClicks() { return new Promise(t => { this._isClickPending ? this._pendingClickFinished = t : t() }) } _pendingClickStarted() { this._isClickPending = !0 } _pendingClickFinished() { this._isClickPending = !1 } _renameDOMAttribute(t, e, r) { t.hasAttribute && t.hasAttribute(e) && (event.target.setAttribute(r, event.target.getAttribute(e)), event.target.removeAttribute(e)) } _triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } _preconnect3rdParties() { let t = []; document.querySelectorAll("script[type=rocketlazyloadscript][data-rocket-src]").forEach(e => { let r = e.getAttribute("data-rocket-src"); if (r && 0 !== r.indexOf("data:")) { 0 === r.indexOf("//") && (r = location.protocol + r); try { let i = new URL(r).origin; i !== location.origin && t.push({ src: i, crossOrigin: e.crossOrigin || "module" === e.getAttribute("data-rocket-type") }) } catch (n) { } } }), t = [...new Map(t.map(t => [JSON.stringify(t), t])).values()], this._batchInjectResourceHints(t, "preconnect") } async _loadEverythingNow() { this.lastBreath = Date.now(), this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async); try { await this._triggerDOMContentLoaded(), await this._pendingWebpackRequests(this), await this._triggerWindowLoad() } catch (t) { console.error(t) } window.dispatchEvent(new Event("rocket-allScriptsLoaded")), this._waitForPendingClicks().then(() => { this._replayClicks() }), this._emptyTrash() } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t => { t.hasAttribute("data-rocket-src") ? t.hasAttribute("async") && !1 !== t.async ? this.delayedScripts.async.push(t) : t.hasAttribute("defer") && !1 !== t.defer || "module" === t.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(t) : this.delayedScripts.normal.push(t) : this.delayedScripts.normal.push(t) }) } async _transformScript(t) { if (await this._littleBreath(), !0 === t.noModule && "noModule" in HTMLScriptElement.prototype) { t.setAttribute("data-rocket-status", "skipped"); return } return new Promise(navigator.userAgent.indexOf("Firefox/") > 0 || "" === navigator.vendor ? e => { let r = document.createElement("script");[...t.attributes].forEach(t => { let e = t.nodeName; "type" !== e && ("data-rocket-type" === e && (e = "type"), "data-rocket-src" === e && (e = "src"), r.setAttribute(e, t.nodeValue)) }), t.text && (r.text = t.text), r.hasAttribute("src") ? (r.addEventListener("load", e), r.addEventListener("error", e)) : (r.text = t.text, e()); try { t.parentNode.replaceChild(r, t) } catch (i) { e() } } : e => { function r() { t.setAttribute("data-rocket-status", "failed"), e() } try { let i = t.getAttribute("data-rocket-type"), n = t.getAttribute("data-rocket-src"); i ? (t.type = i, t.removeAttribute("data-rocket-type")) : t.removeAttribute("type"), t.addEventListener("load", function r() { t.setAttribute("data-rocket-status", "executed"), e() }), t.addEventListener("error", r), n ? (t.removeAttribute("data-rocket-src"), t.src = n) : t.src = "data:text/javascript;base64," + window.btoa(unescape(encodeURIComponent(t.text))) } catch (s) { r() } }) } async _loadScriptsFromList(t) { let e = t.shift(); return e && e.isConnected ? (await this._transformScript(e), this._loadScriptsFromList(t)) : Promise.resolve() } _preloadAllScripts() { this._batchInjectResourceHints([...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async], "preload") } _batchInjectResourceHints(t, e) { var r = document.createDocumentFragment(); t.forEach(t => { let i = t.getAttribute && t.getAttribute("data-rocket-src") || t.src; if (i) { let n = document.createElement("link"); n.href = i, n.rel = e, "preconnect" !== e && (n.as = "script"), t.getAttribute && "module" === t.getAttribute("data-rocket-type") && (n.crossOrigin = !0), t.crossOrigin && (n.crossOrigin = t.crossOrigin), t.integrity && (n.integrity = t.integrity), r.appendChild(n), this.trash.push(n) } }), document.head.appendChild(r) } _delayEventListeners() { let t = {}; function e(e, r) { !function e(r) { !t[r] && (t[r] = { originalFunctions: { add: r.addEventListener, remove: r.removeEventListener }, eventsToRewrite: [] }, r.addEventListener = function () { arguments[0] = i(arguments[0]), t[r].originalFunctions.add.apply(r, arguments) }, r.removeEventListener = function () { arguments[0] = i(arguments[0]), t[r].originalFunctions.remove.apply(r, arguments) }); function i(e) { return t[r].eventsToRewrite.indexOf(e) >= 0 ? "rocket-" + e : e } }(e), t[e].eventsToRewrite.push(r) } function r(t, e) { let r = t[e]; Object.defineProperty(t, e, { get: () => r || function () { }, set(i) { t["rocket" + e] = r = i } }) } e(document, "DOMContentLoaded"), e(window, "DOMContentLoaded"), e(window, "load"), e(window, "pageshow"), e(document, "readystatechange"), r(document, "onreadystatechange"), r(window, "onload"), r(window, "onpageshow") } _delayJQueryReady(t) { let e; function r(t) { return t.split(" ").map(t => "load" === t || 0 === t.indexOf("load.") ? "rocket-jquery-load" : t).join(" ") } function i(i) { if (i && i.fn && !t.allJQueries.includes(i)) { i.fn.ready = i.fn.init.prototype.ready = function (e) { return t.domReadyFired ? e.bind(document)(i) : document.addEventListener("rocket-DOMContentLoaded", () => e.bind(document)(i)), i([]) }; let n = i.fn.on; i.fn.on = i.fn.init.prototype.on = function () { return this[0] === window && ("string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = r(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach(t => { let e = arguments[0][t]; delete arguments[0][t], arguments[0][r(t)] = e })), n.apply(this, arguments), this }, t.allJQueries.push(i) } e = i } i(window.jQuery), Object.defineProperty(window, "jQuery", { get: () => e, set(t) { i(t) } }) } async _pendingWebpackRequests(t) { let e = document.querySelector("script[data-webpack]"); async function r() { return new Promise(t => { e.addEventListener("load", t), e.addEventListener("error", t) }) } e && (await r(), await t._requestAnimFrame(), await t._pendingWebpackRequests(t)) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._littleBreath(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._littleBreath(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._littleBreath(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._littleBreath(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._littleBreath(), window.dispatchEvent(new Event("rocket-load")), await this._littleBreath(), window.rocketonload && window.rocketonload(), await this._littleBreath(), this.allJQueries.forEach(t => t(window).trigger("rocket-jquery-load")), await this._littleBreath(); let t = new Event("rocket-pageshow"); t.persisted = this.persisted, window.dispatchEvent(t), await this._littleBreath(), window.rocketonpageshow && window.rocketonpageshow({ persisted: this.persisted }) } _handleDocumentWrite() { let t = new Map; document.write = document.writeln = function (e) { let r = document.currentScript; r || console.error("WPRocket unable to document.write this: " + e); let i = document.createRange(), n = r.parentElement, s = t.get(r); void 0 === s && (s = r.nextSibling, t.set(r, s)); let a = document.createDocumentFragment(); i.setStart(a, 0), a.appendChild(i.createContextualFragment(e)), n.insertBefore(a, s) } } async _littleBreath() { Date.now() - this.lastBreath > 45 && (await this._requestAnimFrame(), this.lastBreath = Date.now()) } async _requestAnimFrame() { return document.hidden ? new Promise(t => setTimeout(t)) : new Promise(t => requestAnimationFrame(t)) } _emptyTrash() { this.trash.forEach(t => t.remove()) } static run() { let t = new RocketLazyLoadScripts; t._addUserInteractionListener(t) } } RocketLazyLoadScripts.run();</script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="PrivallyApp"
+        data-rocket-src="https://app.privally.global/app.next.js" pid="b24d49-afe463" h-reject="true"></script>
+
+    ​
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ​
+    <!-- wp_head : start -->
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+    <!-- This site is optimized with the Yoast SEO plugin v21.7 - https://yoast.com/wordpress/plugins/seo/ -->
+    <title>Resumo profissional: dicas e modelos para se destacar rápido</title>
+    <link rel="preload" as="style"
+        href="https://fonts.googleapis.com/css?family=Titillium%20Web%3A300%2C300i%2C400%2C400i%2C700%2C700i%7CLato%3A300%2C300i%2C400%2C400i%2C700%2C700i&#038;display=swap" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Titillium%20Web%3A300%2C300i%2C400%2C400i%2C700%2C700i%7CLato%3A300%2C300i%2C400%2C400i%2C700%2C700i&#038;display=swap"
+        media="print" onload="this.media='all'" /><noscript>
+        <link rel="stylesheet"
+            href="https://fonts.googleapis.com/css?family=Titillium%20Web%3A300%2C300i%2C400%2C400i%2C700%2C700i%7CLato%3A300%2C300i%2C400%2C400i%2C700%2C700i&#038;display=swap" />
+    </noscript>
+    <meta name="description"
+        content="O resumo profissional mostra um breve relato das suas experiências. Veja como preenchê-lo e conseguir as melhores oportunidades de emprego agora!" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Resumo profissional: dicas e modelos para se destacar rápido" />
+    <meta property="og:description"
+        content="O resumo profissional mostra um breve relato das suas experiências. Veja como preenchê-lo e conseguir as melhores oportunidades de emprego agora!" />
+    <meta property="og:url"
+        content="https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/" />
+    <meta property="og:site_name" content="VAGAS Profissões" />
+    <meta property="article:publisher" content="https://www.facebook.com/VAGAScom/" />
+    <meta property="article:published_time" content="2021-02-10T03:10:35+00:00" />
+    <meta property="article:modified_time" content="2022-08-31T15:30:08+00:00" />
+    <meta property="og:image"
+        content="https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-555x200.jpg" />
+    <meta property="og:image:width" content="555" />
+    <meta property="og:image:height" content="200" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta name="author" content="Vagas Admin" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@vagas" />
+    <meta name="twitter:site" content="@vagas" />
+    <meta name="twitter:label1" content="Escrito por" />
+    <meta name="twitter:data1" content="Vagas Admin" />
+    <meta name="twitter:label2" content="Est. tempo de leitura" />
+    <meta name="twitter:data2" content="9 minutos" />
+    <script type="application/ld+json"
+        class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/","url":"https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/","name":"Resumo profissional: dicas e modelos para se destacar rápido","isPartOf":{"@id":"https://profissoes.vagas.com.br/#website"},"primaryImageOfPage":{"@id":"https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/#primaryimage"},"image":{"@id":"https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/#primaryimage"},"thumbnailUrl":"https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-scaled.jpg","datePublished":"2021-02-10T03:10:35+00:00","dateModified":"2022-08-31T15:30:08+00:00","author":{"@id":"https://profissoes.vagas.com.br/#/schema/person/a8d80c5fc469561d9376885355be4b7d"},"description":"O resumo profissional mostra um breve relato das suas experiências. Veja como preenchê-lo e conseguir as melhores oportunidades de emprego agora!","breadcrumb":{"@id":"https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/#breadcrumb"},"inLanguage":"pt-BR","potentialAction":[{"@type":"ReadAction","target":["https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/"]}]},{"@type":"ImageObject","inLanguage":"pt-BR","@id":"https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/#primaryimage","url":"https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-scaled.jpg","contentUrl":"https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-scaled.jpg","width":2560,"height":1394,"caption":"Businessman working on laptop and analysing the financial information at his office. Close up of male hands typing on computer keyboard"},{"@type":"BreadcrumbList","@id":"https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://profissoes.vagas.com.br/"},{"@type":"ListItem","position":2,"name":"Resumo profissional: dicas e modelos para destacar seus diferenciais"}]},{"@type":"WebSite","@id":"https://profissoes.vagas.com.br/#website","url":"https://profissoes.vagas.com.br/","name":"VAGAS Profissões","description":"Um novo olhar para sua carreira.","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://profissoes.vagas.com.br/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"pt-BR"},{"@type":"Person","@id":"https://profissoes.vagas.com.br/#/schema/person/a8d80c5fc469561d9376885355be4b7d","name":"Vagas Admin","image":{"@type":"ImageObject","inLanguage":"pt-BR","@id":"https://profissoes.vagas.com.br/#/schema/person/image/","url":"https://secure.gravatar.com/avatar/c24bc75b7b63b41364f96ee5baf086e7?s=96&d=mm&r=g","contentUrl":"https://secure.gravatar.com/avatar/c24bc75b7b63b41364f96ee5baf086e7?s=96&d=mm&r=g","caption":"Vagas Admin"},"url":"https://profissoes.vagas.com.br/author/vagas_admin/"}]}</script>
+    <!-- / Yoast SEO plugin. -->
+
+
+    <link rel='dns-prefetch' href='//profissoes.vagas.com.br' />
+    <link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+    <link rel="alternate" type="application/rss+xml"
+        title="Feed de comentários para VAGAS Profissões &raquo; Resumo profissional: dicas e modelos para destacar seus diferenciais"
+        href="https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/feed/" />
+    <link rel='stylesheet' id='wp-block-library-css'
+        href='https://profissoes.vagas.com.br/wp-includes/css/dist/block-library/style.min.css?ver=6.4.1'
+        type='text/css' media='all' />
+    <style id='classic-theme-styles-inline-css' type='text/css'>
+        /*! This file is auto-generated */
+        .wp-block-button__link {
+            color: #fff;
+            background-color: #32373c;
+            border-radius: 9999px;
+            box-shadow: none;
+            text-decoration: none;
+            padding: calc(.667em + 2px) calc(1.333em + 2px);
+            font-size: 1.125em
+        }
+
+        .wp-block-file__button {
+            background: #32373c;
+            color: #fff;
+            text-decoration: none
+        }
+    </style>
+    <style id='global-styles-inline-css' type='text/css'>
+        body {
+            --wp--preset--color--black: #000000;
+            --wp--preset--color--cyan-bluish-gray: #abb8c3;
+            --wp--preset--color--white: #ffffff;
+            --wp--preset--color--pale-pink: #f78da7;
+            --wp--preset--color--vivid-red: #cf2e2e;
+            --wp--preset--color--luminous-vivid-orange: #ff6900;
+            --wp--preset--color--luminous-vivid-amber: #fcb900;
+            --wp--preset--color--light-green-cyan: #7bdcb5;
+            --wp--preset--color--vivid-green-cyan: #00d084;
+            --wp--preset--color--pale-cyan-blue: #8ed1fc;
+            --wp--preset--color--vivid-cyan-blue: #0693e3;
+            --wp--preset--color--vivid-purple: #9b51e0;
+            --wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg, rgba(6, 147, 227, 1) 0%, rgb(155, 81, 224) 100%);
+            --wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg, rgb(122, 220, 180) 0%, rgb(0, 208, 130) 100%);
+            --wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg, rgba(252, 185, 0, 1) 0%, rgba(255, 105, 0, 1) 100%);
+            --wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg, rgba(255, 105, 0, 1) 0%, rgb(207, 46, 46) 100%);
+            --wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg, rgb(238, 238, 238) 0%, rgb(169, 184, 195) 100%);
+            --wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg, rgb(74, 234, 220) 0%, rgb(151, 120, 209) 20%, rgb(207, 42, 186) 40%, rgb(238, 44, 130) 60%, rgb(251, 105, 98) 80%, rgb(254, 248, 76) 100%);
+            --wp--preset--gradient--blush-light-purple: linear-gradient(135deg, rgb(255, 206, 236) 0%, rgb(152, 150, 240) 100%);
+            --wp--preset--gradient--blush-bordeaux: linear-gradient(135deg, rgb(254, 205, 165) 0%, rgb(254, 45, 45) 50%, rgb(107, 0, 62) 100%);
+            --wp--preset--gradient--luminous-dusk: linear-gradient(135deg, rgb(255, 203, 112) 0%, rgb(199, 81, 192) 50%, rgb(65, 88, 208) 100%);
+            --wp--preset--gradient--pale-ocean: linear-gradient(135deg, rgb(255, 245, 203) 0%, rgb(182, 227, 212) 50%, rgb(51, 167, 181) 100%);
+            --wp--preset--gradient--electric-grass: linear-gradient(135deg, rgb(202, 248, 128) 0%, rgb(113, 206, 126) 100%);
+            --wp--preset--gradient--midnight: linear-gradient(135deg, rgb(2, 3, 129) 0%, rgb(40, 116, 252) 100%);
+            --wp--preset--font-size--small: 13px;
+            --wp--preset--font-size--medium: 20px;
+            --wp--preset--font-size--large: 36px;
+            --wp--preset--font-size--x-large: 42px;
+            --wp--preset--spacing--20: 0.44rem;
+            --wp--preset--spacing--30: 0.67rem;
+            --wp--preset--spacing--40: 1rem;
+            --wp--preset--spacing--50: 1.5rem;
+            --wp--preset--spacing--60: 2.25rem;
+            --wp--preset--spacing--70: 3.38rem;
+            --wp--preset--spacing--80: 5.06rem;
+            --wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+            --wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+            --wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);
+            --wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);
+            --wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);
+        }
+
+        :where(.is-layout-flex) {
+            gap: 0.5em;
+        }
+
+        :where(.is-layout-grid) {
+            gap: 0.5em;
+        }
+
+        body .is-layout-flow>.alignleft {
+            float: left;
+            margin-inline-start: 0;
+            margin-inline-end: 2em;
+        }
+
+        body .is-layout-flow>.alignright {
+            float: right;
+            margin-inline-start: 2em;
+            margin-inline-end: 0;
+        }
+
+        body .is-layout-flow>.aligncenter {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        body .is-layout-constrained>.alignleft {
+            float: left;
+            margin-inline-start: 0;
+            margin-inline-end: 2em;
+        }
+
+        body .is-layout-constrained>.alignright {
+            float: right;
+            margin-inline-start: 2em;
+            margin-inline-end: 0;
+        }
+
+        body .is-layout-constrained>.aligncenter {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        body .is-layout-constrained> :where(:not(.alignleft):not(.alignright):not(.alignfull)) {
+            max-width: var(--wp--style--global--content-size);
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        body .is-layout-constrained>.alignwide {
+            max-width: var(--wp--style--global--wide-size);
+        }
+
+        body .is-layout-flex {
+            display: flex;
+        }
+
+        body .is-layout-flex {
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        body .is-layout-flex>* {
+            margin: 0;
+        }
+
+        body .is-layout-grid {
+            display: grid;
+        }
+
+        body .is-layout-grid>* {
+            margin: 0;
+        }
+
+        :where(.wp-block-columns.is-layout-flex) {
+            gap: 2em;
+        }
+
+        :where(.wp-block-columns.is-layout-grid) {
+            gap: 2em;
+        }
+
+        :where(.wp-block-post-template.is-layout-flex) {
+            gap: 1.25em;
+        }
+
+        :where(.wp-block-post-template.is-layout-grid) {
+            gap: 1.25em;
+        }
+
+        .has-black-color {
+            color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-color {
+            color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-color {
+            color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-color {
+            color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-color {
+            color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-color {
+            color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-color {
+            color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-color {
+            color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-color {
+            color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-color {
+            color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-color {
+            color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-color {
+            color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-background-color {
+            background-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-background-color {
+            background-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-background-color {
+            background-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-background-color {
+            background-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-background-color {
+            background-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-background-color {
+            background-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-background-color {
+            background-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-background-color {
+            background-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-background-color {
+            background-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-background-color {
+            background-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-black-border-color {
+            border-color: var(--wp--preset--color--black) !important;
+        }
+
+        .has-cyan-bluish-gray-border-color {
+            border-color: var(--wp--preset--color--cyan-bluish-gray) !important;
+        }
+
+        .has-white-border-color {
+            border-color: var(--wp--preset--color--white) !important;
+        }
+
+        .has-pale-pink-border-color {
+            border-color: var(--wp--preset--color--pale-pink) !important;
+        }
+
+        .has-vivid-red-border-color {
+            border-color: var(--wp--preset--color--vivid-red) !important;
+        }
+
+        .has-luminous-vivid-orange-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-amber-border-color {
+            border-color: var(--wp--preset--color--luminous-vivid-amber) !important;
+        }
+
+        .has-light-green-cyan-border-color {
+            border-color: var(--wp--preset--color--light-green-cyan) !important;
+        }
+
+        .has-vivid-green-cyan-border-color {
+            border-color: var(--wp--preset--color--vivid-green-cyan) !important;
+        }
+
+        .has-pale-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--pale-cyan-blue) !important;
+        }
+
+        .has-vivid-cyan-blue-border-color {
+            border-color: var(--wp--preset--color--vivid-cyan-blue) !important;
+        }
+
+        .has-vivid-purple-border-color {
+            border-color: var(--wp--preset--color--vivid-purple) !important;
+        }
+
+        .has-vivid-cyan-blue-to-vivid-purple-gradient-background {
+            background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;
+        }
+
+        .has-light-green-cyan-to-vivid-green-cyan-gradient-background {
+            background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;
+        }
+
+        .has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;
+        }
+
+        .has-luminous-vivid-orange-to-vivid-red-gradient-background {
+            background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;
+        }
+
+        .has-very-light-gray-to-cyan-bluish-gray-gradient-background {
+            background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;
+        }
+
+        .has-cool-to-warm-spectrum-gradient-background {
+            background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;
+        }
+
+        .has-blush-light-purple-gradient-background {
+            background: var(--wp--preset--gradient--blush-light-purple) !important;
+        }
+
+        .has-blush-bordeaux-gradient-background {
+            background: var(--wp--preset--gradient--blush-bordeaux) !important;
+        }
+
+        .has-luminous-dusk-gradient-background {
+            background: var(--wp--preset--gradient--luminous-dusk) !important;
+        }
+
+        .has-pale-ocean-gradient-background {
+            background: var(--wp--preset--gradient--pale-ocean) !important;
+        }
+
+        .has-electric-grass-gradient-background {
+            background: var(--wp--preset--gradient--electric-grass) !important;
+        }
+
+        .has-midnight-gradient-background {
+            background: var(--wp--preset--gradient--midnight) !important;
+        }
+
+        .has-small-font-size {
+            font-size: var(--wp--preset--font-size--small) !important;
+        }
+
+        .has-medium-font-size {
+            font-size: var(--wp--preset--font-size--medium) !important;
+        }
+
+        .has-large-font-size {
+            font-size: var(--wp--preset--font-size--large) !important;
+        }
+
+        .has-x-large-font-size {
+            font-size: var(--wp--preset--font-size--x-large) !important;
+        }
+
+        .wp-block-navigation a:where(:not(.wp-element-button)) {
+            color: inherit;
+        }
+
+        :where(.wp-block-post-template.is-layout-flex) {
+            gap: 1.25em;
+        }
+
+        :where(.wp-block-post-template.is-layout-grid) {
+            gap: 1.25em;
+        }
+
+        :where(.wp-block-columns.is-layout-flex) {
+            gap: 2em;
+        }
+
+        :where(.wp-block-columns.is-layout-grid) {
+            gap: 2em;
+        }
+
+        .wp-block-pullquote {
+            font-size: 1.5em;
+            line-height: 1.6;
+        }
+    </style>
+    <link rel='stylesheet' id='ez-toc-css'
+        href='https://profissoes.vagas.com.br/wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=2.0.61'
+        type='text/css' media='all' />
+    <style id='ez-toc-inline-css' type='text/css'>
+        div#ez-toc-container .ez-toc-title {
+            font-size: 24px;
+        }
+
+        div#ez-toc-container .ez-toc-title {
+            font-weight: 700;
+        }
+
+        div#ez-toc-container ul li {
+            font-size: 16px;
+        }
+
+        div#ez-toc-container nav ul ul li div#ez-toc-container {
+            background-color: #fff;
+            border: 1px solid #f2f2f2;
+            width: 100%;
+        }
+
+        div#ez-toc-container p.ez-toc-title,
+        #ez-toc-container .ez_toc_custom_title_icon,
+        #ez-toc-container .ez_toc_custom_toc_icon {
+            color: #4c4c4c;
+        }
+
+        div#ez-toc-container ul.ez-toc-list a {
+            color: #1b6da8;
+        }
+
+        div#ez-toc-container ul.ez-toc-list a:hover {
+            color: #50c092;
+        }
+
+        div#ez-toc-container ul.ez-toc-list a:visited {
+            color: #1b6da8;
+        }
+    </style>
+    <link rel='stylesheet' id='wordpress-popular-posts-css-css'
+        href='https://profissoes.vagas.com.br/wp-content/plugins/wordpress-popular-posts/assets/css/wpp.css?ver=6.3.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='preload-style-css'
+        href='https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/css/preload-style.min.css?ver=1.2.55'
+        type='text/css' media='all' />
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/js/jquery-3.5.min.js?ver=6.4.1.3"
+        id="jquery-js"></script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/js/jquery-migrate-3.3.min.js?ver=6.4.1.3"
+        id="jquery-migrate-js"></script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/mu-plugins/chorus-core/integrations/script.js?ver=1"
+        id="chorus_integrations_main-js"></script>
+    <script type="application/json" id="wpp-json">
+
+{"sampling_active":0,"sampling_rate":100,"ajax_url":"https:\/\/profissoes.vagas.com.br\/wp-json\/wordpress-popular-posts\/v1\/popular-posts","api_url":"https:\/\/profissoes.vagas.com.br\/wp-json\/wordpress-popular-posts","ID":11409,"token":"b890ad8bf5","lang":0,"debug":0}
+
+</script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/plugins/wordpress-popular-posts/assets/js/wpp.min.js?ver=6.3.4"
+        id="wpp-js-js"></script>
+    <link rel="https://api.w.org/" href="https://profissoes.vagas.com.br/wp-json/" />
+    <link rel="alternate" type="application/json" href="https://profissoes.vagas.com.br/wp-json/wp/v2/posts/11409" />
+    <link rel='shortlink' href='https://profissoes.vagas.com.br/?p=11409' />
+    <link rel="alternate" type="application/json+oembed"
+        href="https://profissoes.vagas.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fprofissoes.vagas.com.br%2Fresumo-profissional-qualificacoes-e-diferenciais%2F" />
+    <link rel="alternate" type="text/xml+oembed"
+        href="https://profissoes.vagas.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fprofissoes.vagas.com.br%2Fresumo-profissional-qualificacoes-e-diferenciais%2F&#038;format=xml" />
+
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+      window.chorusAnalytics_blogName = 'VAGAS Profissões';
+    </script>
+
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+        window.chorusAnalytics_postType              = 'post';
+        window.chorusAnalytics_postDate              =  1612915835;
+        window.chorusAnalytics_postAuthor            = 'Vagas Admin';
+        window.chorusAnalytics_postCategories        = '"[\"Busca de emprego\",\"Curr\\u00edculo\",\"home\"]"';
+        window.chorusAnalytics_postTags              = '"[\"V\\u00eddeos de Carreira\"]"';
+        window.chorusAnalytics_postWordCount         =  2382;
+        window.chorusAnalytics_postPublishedByStudio =  false;
+      </script>
+
+    <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>      window.addEventListener('load', function () {
+        if (!window.chorusAnalytics_isLoaded) {
+          
+          var rockAnalyticsScript_V2 = document.createElement('script');
+          rockAnalyticsScript_V2.type = 'text/javascript';
+          rockAnalyticsScript_V2.src =  'https://api.analytics.rockcontent.com/api/tracker?domain=profissoes.vagas.com.br';
+
+          var source = document.createAttribute('source');
+          source.value = 'stage';
+          rockAnalyticsScript_V2.setAttributeNode(source); 
+
+          rockAnalyticsScript_V2.async = false;
+          rockAnalyticsScript_V2.defer = 'defer';
+
+          var website = document.createAttribute('data-website-id');
+          website.value = 'There is no application with this url registered';
+          rockAnalyticsScript_V2.setAttributeNode(website); 
+
+          var host = document.createAttribute('data-host-url');
+          host.value = 'https://api.analytics.rockcontent.com';
+          rockAnalyticsScript_V2.setAttributeNode(host); 
+
+          document.body.appendChild(rockAnalyticsScript_V2);
+    
+        }
+      });
+    </script>
+    <script
+        type="rocketlazyloadscript">window.chorusAnalytics_integrationsUrl = "https:\/\/profissoes.vagas.com.br\/wp-json\/chorus-core\/v1\/integrations";</script>
+    <style id="wpp-loading-animation-styles">
+        @-webkit-keyframes bgslide {
+            from {
+                background-position-x: 0
+            }
+
+            to {
+                background-position-x: -200%
+            }
+        }
+
+        @keyframes bgslide {
+            from {
+                background-position-x: 0
+            }
+
+            to {
+                background-position-x: -200%
+            }
+        }
+
+        .wpp-widget-placeholder,
+        .wpp-widget-block-placeholder,
+        .wpp-shortcode-placeholder {
+            margin: 0 auto;
+            width: 60px;
+            height: 3px;
+            background: #dd3737;
+            background: linear-gradient(90deg, #dd3737 0%, #571313 10%, #dd3737 100%);
+            background-size: 200% auto;
+            border-radius: 3px;
+            -webkit-animation: bgslide 1s infinite linear;
+            animation: bgslide 1s infinite linear
+        }
+    </style>
+
+    <!-- Start Alexa Certify Javascript -->
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+    _atrk_opts = { atrk_acct:"GZxPf1aYS5008N", domain:"vagas.com.br",dynamic: true};
+    (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+    </script>
+    <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=GZxPf1aYS5008N" style="display:none"
+            height="1" width="1" alt="" /></noscript>
+    <!-- End Alexa Certify Javascript -->
+
+
+    <!-- Vagas.com Begin TailTarget -->
+    <script type="rocketlazyloadscript">
+    (function(i) {
+      var ts = document.createElement('script');
+      ts.type = 'text/javascript';
+      ts.async = true;
+      ts.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'tags.t.tailtarget.com/t3m.js?i=' + i;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ts, s);
+    })('TT-10235-0/CT-30');
+  </script>
+    <!-- Vagas.com End TailTarget -->
+
+
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+  var PREBID_TIMEOUT = 2000;
+
+  var adUnits = [];
+    adUnits.push(
+    {
+      code: "vp_materias_square_300x250",
+      sizes: [300, 250],
+      bids: [
+        {"bidder":"appnexus","params":{"placementId":"13020908"}},
+        {"bidder":"rubicon","params":{
+          "accountId":"15452",
+          "siteId":"97752",
+          "zoneId":"458742",
+          "sizes":[15]
+        }},
+        {"bidder":"criteo","params":{"zoneId":"1114156"}}
+      ]
+    }
+  );
+    adUnits.push(
+    {
+      code: "vp_materias_halfpage_300x600",
+      sizes: [300, 600],
+      bids: [
+        {"bidder":"appnexus","params":{"placementId":"13020917"}},
+        {"bidder":"rubicon","params":{
+          "accountId":"15452",
+          "siteId":"97752",
+          "zoneId":"458742",
+          "sizes":[10]
+        }},
+        {"bidder":"criteo","params":{"zoneId":"1114157"}}
+      ]
+    }
+  );
+    adUnits.push(
+    {
+      code: "vp_materias_leaderboard_728x90",
+      sizes: [728, 90],
+      bids: [
+        {"bidder":"appnexus","params":{"placementId":"13020891"}},
+        {"bidder":"rubicon","params":{
+          "accountId":"15452",
+          "siteId":"97752",
+          "zoneId":"458742",
+          "sizes":[2]
+        }},
+        {"bidder":"criteo","params":{"zoneId":"1114158"}}
+      ]
+    }
+  );
+    adUnits.push(
+    {
+      code: "vp_mobile_materias_leaderboard_320x50",
+      sizes: [320, 50],
+      bids: [
+        {"bidder":"appnexus","params":{"placementId":"13020921"}},
+        {"bidder":"rubicon","params":{
+          "accountId":"15452",
+          "siteId":"134114",
+          "zoneId":"633542",
+          "sizes":[43]
+        }},
+        {"bidder":"criteo","params":{"zoneId":"1114159"}}
+      ]
+    }
+  );
+    
+  var pbjs = pbjs || {};
+  pbjs.que = pbjs.que || [];
+
+  (function() {
+      var d = document,
+          e = d.createElement('script'),
+          p = d.getElementsByTagName('head')[0];
+      e.type = 'text/javascript';
+      e.async = true;
+      e.src = 'https://www.vagas.com.br/scripts/publicidade/prebid_with_currency.js';
+      p.insertBefore(e, p.firstChild);
+  })();
+
+  pbjs.que.push(function() {
+      const customGranularity = {
+          'buckets': [{'min': 0, 'max': 50, 'increment': 0.01 }]
+      };
+      pbjs.setConfig({
+          priceGranularity: customGranularity,
+          currency: {
+              adServerCurrency: "BRL",
+              granularityMultiplier: 1,
+              conversionRateFile: "https://currency.prebid.org/latest.json"
+          }
+      })
+  });
+</script>
+    <!-- Prebid Config Section END -->
+
+    <!-- Prebid Boilerplate Section START. -->
+    <script type="rocketlazyloadscript">
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+googletag.cmd.push(function() {
+    googletag.pubads().disableInitialLoad();
+});
+
+pbjs.que.push(function() {
+    pbjs.addAdUnits(adUnits);
+    pbjs.requestBids({
+        bidsBackHandler: sendAdserverRequest
+    });
+});
+
+function sendAdserverRequest() {
+    if (pbjs.adserverRequestSent) return;
+    pbjs.adserverRequestSent = true;
+    googletag.cmd.push(function() {
+        pbjs.que.push(function() {
+            pbjs.setTargetingForGPTAsync();
+            googletag.pubads().refresh();
+        });
+    });
+}
+
+setTimeout(function() {
+    sendAdserverRequest();
+}, PREBID_TIMEOUT);
+
+</script>
+    <!-- Prebid Boilerplate Section END -->
+
+    <!-- Vagas.com Begin Google Publisher Tag -->
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+var getTailTargetParam = function(a) {
+  var ttCookieName = "_ttdmp";
+  if (!window._ttprofilescache) {
+    window._ttprofilescache = {};
+    try {
+      var c = document.cookie.match('(^|;)\\s*' + ttCookieName + '\\s*=\\s*([^;]+)');
+      var d = c ? c.pop().split('|') : [];
+      for (var i = 0; i < d.length; i++) {
+        var kv = d[i].split(":");
+        if (kv[1] && kv[1].indexOf(",") > 0) {
+            window._ttprofilescache[kv[0]] = kv[1].split(",");
+        } else {
+            window._ttprofilescache[kv[0]] = kv[1];
+        }
+      }
+    } catch (e) {
+    }
+  }
+  return window._ttprofilescache[a] ? window._ttprofilescache[a] : 'na';
+};
+
+(function () {
+    var gads = document.createElement('script');
+    gads.async = true;
+    gads.type = 'text/javascript';
+    var useSSL = 'https:' == document.location.protocol;
+    gads.src = (useSSL ? 'https:' : 'http:') +
+            '//www.googletagservices.com/tag/js/gpt.js';
+    var node = document.getElementsByTagName('script')[0];
+    node.parentNode.insertBefore(gads, node);
+})();
+
+googletag.cmd.push(function () {
+  
+    
+    googletag.defineSlot('/1721836/vp_materias_square_300x250', [300, 250], 'vp_materias_square_300x250').addService(googletag.pubads());
+
+
+    googletag.defineSlot('/1721836/vp_materias_halfpage_300x600', [300, 600], 'vp_materias_halfpage_300x600').addService(googletag.pubads());
+
+
+    googletag.defineSlot('/1721836/vp_materias_leaderboard_728x90', [728, 90], 'vp_materias_leaderboard_728x90').addService(googletag.pubads());
+
+
+    googletag.defineSlot('/1721836/vp_mobile_materias_leaderboard_320x50', [320, 50], 'vp_mobile_materias_leaderboard_320x50').addService(googletag.pubads());
+
+
+    googletag.pubads().setTargeting("ttLS", getTailTargetParam('LS'));
+    googletag.pubads().setTargeting("ttS", getTailTargetParam('S'));
+    googletag.pubads().setTargeting("ttT", getTailTargetParam('T'));
+    googletag.pubads().setTargeting("ttC", getTailTargetParam('C'));
+    googletag.pubads().setTargeting("ttU", getTailTargetParam('U'));
+    googletag.pubads().setTargeting("ttE", getTailTargetParam('E'));
+    googletag.pubads().setTargeting("ttA", getTailTargetParam('A'));
+    googletag.pubads().setTargeting("ttG", getTailTargetParam('G'));
+    googletag.pubads().setTargeting("ttCA", getTailTargetParam('CA'));
+    
+    googletag.pubads().enableSingleRequest();
+    googletag.pubads().collapseEmptyDivs();
+    googletag.enableServices();
+});
+
+</script>
+    <!-- END Vagas.com Google Publisher Tag -->
+
+    <link rel='amphtml' href='https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/amp/'>
+    <link rel="amphtml" href="https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/amp/">
+    <!-- vagasp_head_js_variables -->
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+    var ajaxurl   = 'https://profissoes.vagas.com.br/wp-admin/admin-ajax.php';
+    var home_url  = 'https://profissoes.vagas.com.br/';
+    var theme_url = 'https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/';
+    </script>
+
+    <style type="text/css" id="wp-custom-css">
+        .has-image-overlay .overlay-image .image {
+            position: relative;
+            height: 100%;
+            z-index: 1;
+            transition: all .2s ease-in-out;
+            width: auto;
+            object-fit: cover;
+        }
+
+        .dropdown-menu .submenu a {
+            color: #797979;
+        }
+
+        .newsletter-box input {
+            color: #fff;
+        }
+    </style>
+    <!-- wp_head : end -->
+    ​
+    <meta name="google-site-verification" content="8RAoGNaeZKLFovvco4xr8jjIh--7shfctkzK4Yokm-4" />
+</head>
+
+<body
+    class="post-template-default single single-post postid-11409 single-format-standard resumo-profissional-qualificacoes-e-diferenciais">
+    <!-- Google Tag Manager -->
+    <script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-52H238');</script>
+    <!-- End Google Tag Manager -->
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-52H238" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <!-- header -->
+    <header class="header clear" style="background-color: #181D2E;">
+        <div class="container">
+            <div class="row">
+                <!-- logo -->
+                <div class="logo col-md-3 col-sm-12 col-xs-12">
+                    <p><a href="index.php"><span class="vagas_profissoes_logo">Vagas
+                                profissões</span></a></p>
+                    ​
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#menu-main" aria-expanded="false" aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div id="search-mobile">
+                        <input type="hidden" id="_wpnonce" name="_wpnonce" value="8702e425ac" />
+                        <form method='get' action='https://profissoes.vagas.com.br/' id='mobile-search-form'
+                            class='header-search-form'>
+                            <label for='mobile-search-term' class=''></label>
+                            <div class='form-group'>
+                                <div class="input-group">
+                                    <span class='input-group-addon'><span id='mobile-close-search'
+                                            class='header-search-form-close'></span></span>
+                                    <input type="hidden" id="_wpnonce" name="_wpnonce" value="8702e425ac" />
+                                    <input type='text' class='form-control' placeholder='Pesquise no VAGAS profissões'
+                                        id='mobile-search-term' name='s' value='' />
+                                    <div class="input-group-btn">
+                                        <button type='submit' class='btn header-search-submit'
+                                            id='mobile-search-submit-btn'></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </header>
+    <!-- /header -->
+    <main role="main">
+
+
+
+        <section class="container" id="post-single">
+            <div class="row">
+                <div class="col-md-6">
+                    <article id="post-11409"
+                        class="post-11409 post type-post status-publish format-standard has-post-thumbnail hentry category-busca-emprego category-curriculo category-home tag-videos-de-carreira">
+
+                        <h1 class="post-title">Resumo profissional: dicas e modelos para destacar seus diferenciais</h1>
+                        <h2 class='post-subtitle'>Saiba como preencher esse campo tão importante do currículo e aumentar
+                            suas chances</h2>
+                        <div class="single-post-thumbnail">
+                            <img src="https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-555x302.jpg"
+                                class="attachment-large size-large wp-post-image"
+                                alt="Homem preenche currículo no notebook" decoding="async" fetchpriority="high"
+                                srcset="https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-555x302.jpg 555w, https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-768x418.jpg 768w, https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-1536x837.jpg 1536w, https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-2048x1116.jpg 2048w"
+                                sizes="(max-width: 555px) 100vw, 555px" />
+                        </div>
+
+                        <div class="post-body">
+                            <p><span style="font-weight: 400;">Preencher o <strong>resumo profissional</strong> de forma
+                                    adequada, com um texto bem escrito, que utilize as melhores palavras para definir
+                                    sua atuação, é importante para ser identificado pela triagem automática e para
+                                    fisgar a atenção do recrutador. Neste post, vamos mostrar como preencher esse campo
+                                    de forma correta e atrativa. Vamos lá?</span></p>
+
+
+                            <h2><span class="ez-toc-section" id="o-que-e-resumo-profissional"></span><strong>O que é
+                                    resumo profissional?</strong><span class="ez-toc-section-end"></span></h2>
+                            <p>O resumo profissional é aquela parte do currículo que resume suas competências e
+                                experiência profissional. A ideia é facilitar a vida do recrutador, que olhará este
+                                texto e rapidamente entenderá quem você é e como você se encaixa no perfil profissional
+                                que a empresa procura.</p>
+                            <h2><span class="ez-toc-section" id="quem-deve-usar-resumo-profissional"></span><strong>Quem
+                                    deve usar resumo profissional?</strong><span class="ez-toc-section-end"></span></h2>
+                            <p><span style="font-weight: 400;">Todo profissional deve preencher seu resumo profissional
+                                    para fornecer ao recrutador uma ideia clara de quem ele é, o que já fez e o que pode
+                                    fazer. Mesmo quem não tem experiência profissional precisa criar um texto que
+                                    demonstre seu potencial.&nbsp;</span></p>
+                            <h2><span class="ez-toc-section"
+                                    id="como-o-resumo-profissional-deve-ser"></span><strong>Como o resumo profissional
+                                    deve ser?&nbsp;</strong><span class="ez-toc-section-end"></span></h2>
+                            <p><span style="font-weight: 400;">O resumo profissional deve ser bem escrito. O ideal é
+                                    resumir todas as informações do currículo em poucas palavras. Veja a seguir quais as
+                                    principais características que seu resumo&nbsp; profissional deve ter.</span></p>
+                            <h3><span class="ez-toc-section" id="objetivo"></span><strong>Objetivo&nbsp;</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Destaque suas principais experiências, formação,
+                                    conhecimento em softwares e em outros idiomas.</span></p>
+                            <h3><span class="ez-toc-section" id="focado"></span><strong>Focado&nbsp;</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Tenha em mente que esse campo deve trazer evidências que
+                                    reforcem seu objetivo profissional.</span></p>
+                            <h3><span class="ez-toc-section" id="otimizado"></span><strong>Otimizado&nbsp;</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Um em cada 2 currículos lidos pelos recrutadores têm um
+                                    resumo profissional entre 101 e 500 caracteres (foque nas palavras-chave dos
+                                    anúncios da sua área, saiba mais em </span><a
+                                    href="https://profissoes.vagas.com.br/dicas-de-seo-para-curriculo-aparecer/"
+                                    target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">Dicas de
+                                        SEO para currículo: veja como ser encontrado</span></a><span
+                                    style="font-weight: 400;">).</span></p>
+                            <h3><span class="ez-toc-section" id="original"></span><strong>Original&nbsp;</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Seu resumo profissional precisa ser único. Ou seja, não
+                                    vale fazer “copiar” e “colar” do resumo de outra pessoa. Seja original.&nbsp;</span>
+                            </p>
+                            <h2><span class="ez-toc-section" id="como-fazer-resumo-profissional"></span><strong>Como
+                                    fazer resumo profissional&nbsp;</strong><span class="ez-toc-section-end"></span>
+                            </h2>
+                            <p><span style="font-weight: 400;">Veja a seguir exemplos de resumo profissional para três
+                                    vagas de emprego e observe como montar o texto com todas as informações
+                                    necessárias.</span></p>
+                            <h3><span class="ez-toc-section" id="tempo-de-experiencia"></span><strong>Tempo de
+                                    experiência</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">No resumo profissional, você precisa deixar clara a
+                                    experiência que tem na área, principalmente quando esse é um requisito do anúncio da
+                                    vaga. Não vale mentir (nem aumentar), mas é preciso cumprir o requisito e ter
+                                    objetividade ao dar essa informação.&nbsp;</span></p>
+                            <p><span style="font-weight: 400;">Exemplos:&nbsp;</span></p>
+                            <p><strong>Resumo para se candidatar ao cargo de Assistente
+                                    Administrativo:&nbsp;</strong>Experiência de 2 anos em rotinas administrativas</p>
+                            <p><span style="font-weight: 400;">&nbsp;</span><strong>Resumo para se candidatar ao cargo
+                                    de Analista Financeiro Pleno:&nbsp;</strong>Experiência de 5 anos em rotinas
+                                financeiras</p>
+                            <p><span style="font-weight: 400;">&nbsp;</span><strong>Resumo para se candidatar ao cargo
+                                    de Coordenador de Recursos Humanos:&nbsp;</strong>Experiência de 12 anos em RH</p>
+                            <h3><span class="ez-toc-section" id="areas-em-que-trabalhou"></span><strong>Áreas em que
+                                    trabalhou</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Resumir as áreas em que você já trabalhou dá uma ideia do
+                                    tipo de experiência que você tem e do que pode entregar à empresa. Se você ainda não
+                                    passou por várias áreas, vale detalhar as atividades que já realizou.&nbsp;</span>
+                            </p>
+                            <p><span style="font-weight: 400;">Exemplos:&nbsp;</span></p>
+                            <p><b>Resumo para se candidatar ao cargo de Assistente Administrativo:&nbsp; </b><span
+                                    style="font-weight: 400;">Experiência de 2 anos em rotinas administrativas,
+                                </span><b>como emissão de notas fiscais, gestão de contratos, atendimento ao cliente e
+                                    cobrança.</b></p>
+                            <p><span style="font-weight: 400;">&nbsp;</span><b>Resumo para se candidatar ao cargo de
+                                    Analista Financeiro Pleno:&nbsp;</b><span style="font-weight: 400;">Experiência de 5
+                                    anos em rotinas financeiras</span><b>, como conciliação, lançamentos bancários e
+                                    contato com fornecedores externos (contabilidade e departamento pessoal)</b><span
+                                    style="font-weight: 400;">.</span></p>
+                            <p><span style="font-weight: 400;">&nbsp;</span><b>Resumo para se candidatar ao cargo de
+                                    Coordenador de Recursos Humanos:&nbsp;</b><span
+                                    style="font-weight: 400;">Experiência de 12 anos em RH, </span><b>com atuação nas
+                                    áreas de R&amp;S, T&amp;D e BP. Experiência em projetos de DHO, implantação de
+                                    programas de incentivo, pesquisa de clima e avaliação 360º. Vivência em empresas
+                                    nacionais e multinacionais na área de bens de consumo.</b></p>
+                            <h3><span class="ez-toc-section" id="formacao-profissional"></span><strong>Formação
+                                    profissional&nbsp;</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Quanto mais experiência você tiver, menos destaque
+                                    precisa dar para sua formação. O contrário também é válido: se você ainda não tem
+                                    experiência profissional, o “ouro” do seu resumo deve ser a sua
+                                    formação.&nbsp;</span></p>
+                            <p><b>Resumo para se candidatar ao cargo de Assistente Administrativo:&nbsp; </b><span
+                                    style="font-weight: 400;">Experiência de 2 anos em rotinas administrativas, tais
+                                    como emissão de notas fiscais, gestão de contratos, atendimento ao cliente e
+                                    cobrança.&nbsp;</span><b>Curso a noite o Técnico de Administração de Empresas pelo
+                                    Centro Paula Souza (dez/2018).</b></p>
+                            <p><b>Resumo para se candidatar ao cargo de Analista Financeiro Pleno:&nbsp;</b><span
+                                    style="font-weight: 400;">Experiência de 5 anos em rotinas financeiras, tais como
+                                    conciliação, lançamentos bancários e contato com fornecedores externos
+                                    (contabilidade e departamento pessoal).&nbsp;</span><b>Sou Tecnólogo em Gestão
+                                    Financeira pela Universidade Anhanguera (dez/2015), atualmente estou cursando MBA em
+                                    Gestão Financeira pela FGV (jul/2019).&nbsp;</b></p>
+                            <p><b>Resumo para se candidatar ao cargo de Coordenador de Recursos Humanos:&nbsp;</b><span
+                                    style="font-weight: 400;">Experiência de 12 anos em RH, com atuação nas áreas de
+                                    R&amp;S, T&amp;D e BP. Experiência em projetos de DHO, implantação de programas de
+                                    incentivo, pesquisa de clima e avaliação 360º. Vivência em empresas nacionais e
+                                    multinacionais na área de bens de consumo.&nbsp;</span><b>Sou Psicóloga formada pela
+                                    Mackenzie (dez/2009), Coach pelo IBC (jul/2013) e curso MBA em Gestão Empresarial
+                                    pela FGV (dez/2018).</b></p>
+                            <h3><span class="ez-toc-section"
+                                    id="softwares-ferramentas-e-idiomas"></span><strong>Softwares, ferramentas e
+                                    idiomas&nbsp;</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Ainda no resumo profissional você pode destacar outros
+                                    requisitos do anúncio que possa cumprir. Conhecimento de softwares e idiomas, por
+                                    exemplo, entram aqui.&nbsp;</span></p>
+                            <p><b>Resumo para se candidatar ao cargo de Assistente Administrativo:&nbsp; </b><span
+                                    style="font-weight: 400;">Experiência de 2 anos em rotinas administrativas, tais
+                                    como emissão de notas fiscais, gestão de contratos, atendimento ao cliente e
+                                    cobrança.&nbsp;</span><span style="font-weight: 400;">Curso a noite o Técnico de
+                                    Administração de Empresas pelo Centro Paula Souza (dez/2018) e p</span><b>ossuo
+                                    conhecimento intermediário no sistema de ERP da TOTVS e no Pacote Office (Excel,
+                                    PowerPoint e Word).</b></p>
+                            <p><span style="font-weight: 400;">&nbsp;</span><b>Resumo para se candidatar ao cargo de
+                                    Analista Financeiro Pleno:&nbsp;</b><span style="font-weight: 400;">Experiência de 5
+                                    anos em rotinas financeiras, tais como conciliação, lançamentos bancários e contato
+                                    com fornecedores externos (contabilidade e departamento pessoal).&nbsp;</span><span
+                                    style="font-weight: 400;">Sou Tecnólogo em Gestão Financeira pela Universidade
+                                    Anhanguera (dez/2015), atualmente estou cursando MBA em Gestão Financeira pela FGV
+                                    (jul/2019). </span><b>Possuo inglês nível intermediário (cursando) e conhecimento
+                                    avançado com softwares de ERP (TOTVS e SAP) e Excel.</b></p>
+                            <p><b>Resumo para se candidatar ao cargo de Coordenador de Recursos Humanos:&nbsp;</b><span
+                                    style="font-weight: 400;">Experiência de 12 anos em RH, com atuação nas áreas de
+                                    R&amp;S, T&amp;D e BP. Experiência em projetos de DHO, implantação de programas de
+                                    incentivo, pesquisa de clima e avaliação 360º. Vivência em empresas nacionais e
+                                    multinacionais na área de bens de consumo.&nbsp;</span><span
+                                    style="font-weight: 400;">Sou Psicóloga formada pela Mackenzie (dez/2009), Coach
+                                    pelo IBC (jul/2013) e curso MBA em Gestão Empresarial pela FGV (dez/2018).
+                                </span><b>Tenho conhecimento avançado em PowerPoint e Excel, falo inglês
+                                    fluentemente.</b></p>
+                            <h3><span class="ez-toc-section"
+                                    id="certificados-e-informacoes-complementares"></span><strong>Certificados e
+                                    informações complementares&nbsp;</strong><span class="ez-toc-section-end"></span>
+                            </h3>
+                            <p><span style="font-weight: 400;">Para finalizar, cite certificados e outras informações
+                                    que sejam realmente relevantes para o cargo que você quer ocupar.&nbsp;</span></p>
+                            <h3><span class="ez-toc-section"
+                                    id="resumo-para-se-candidatar-ao-cargo-de-assistente-administrativo"></span><b>Resumo
+                                    para se candidatar ao cargo de Assistente Administrativo</b><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Experiência de 2 anos em rotinas administrativas, tais
+                                    como emissão de notas fiscais, gestão de contratos, atendimento ao cliente e
+                                    cobrança.&nbsp;</span><span style="font-weight: 400;">Curso a noite o Técnico de
+                                    Administração de Empresas pelo Centro Paula Souza (dez/2018) e possuo conhecimento
+                                    intermediário no sistema de ERP da TOTVS e no Pacote Office (Excel, PowerPoint e
+                                    Word).&nbsp;</span><b>Em maio/2018 fiz um curso de Apresentação do Sistema
+                                    Tributário pela FGV (5 horas-online).</b></p>
+                            <h3><span class="ez-toc-section"
+                                    id="resumo-profissional-para-se-candidatar-ao-cargo-de-analista-financeiro-pleno"></span><b>Resumo
+                                    profissional para se candidatar ao cargo de Analista Financeiro Pleno</b><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Experiência de 5 anos em rotinas financeiras, tais como
+                                    conciliação, lançamentos bancários e contato com fornecedores externos
+                                    (contabilidade e departamento pessoal).&nbsp;</span><span
+                                    style="font-weight: 400;">Sou Tecnólogo em Gestão Financeira pela Universidade
+                                    Anhanguera (dez/2015), atualmente estou cursando MBA em Gestão Financeira pela FGV
+                                    (jul/2019). Possuo inglês nível intermediário (cursando) e conhecimento avançado com
+                                    softwares de ERP (TOTVS e SAP) e Excel. </span><b>(não tem certificados para
+                                    incluir, ok)</b></p>
+                            <h3><span class="ez-toc-section"
+                                    id="resumo-profissional-para-se-candidatar-ao-cargo-de-coordenador-de-recursos-humanos"></span><strong>Resumo
+                                    profissional para se candidatar ao cargo de Coordenador de Recursos
+                                    Humanos</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Experiência de 12 anos em RH, com atuação nas áreas de
+                                    R&amp;S, T&amp;D e BP. Experiência em projetos de DHO, implantação de programas de
+                                    incentivo, pesquisa de clima e avaliação 360º. Vivência em empresas nacionais e
+                                    multinacionais na área de bens de consumo.&nbsp;</span><span
+                                    style="font-weight: 400;">Sou Psicóloga formada pela Mackenzie (dez/2009), Coach
+                                    pelo IBC (jul/2013) e curso MBA em Gestão Empresarial pela FGV (dez/2018). Tenho
+                                    conhecimento avançado em PowerPoint e Excel, falo inglês fluente (TOEFL) e
+                                </span><b>fiz um intercâmbio para o Canadá em 2011.</b></p>
+                            <h2><span class="ez-toc-section"
+                                    id="o-que-colocar-no-resumo-profissional-se-nunca-trabalhei"></span><strong>O que
+                                    colocar no resumo profissional se nunca trabalhei?&nbsp;</strong><span
+                                    class="ez-toc-section-end"></span></h2>
+                            <p><span style="font-weight: 400;">Se você nunca trabalhou, deve utilizar sua experiência
+                                    acadêmica e voluntária para escrever o texto, seguindo a mesma ordem proposta
+                                    acima.&nbsp;</span></p>
+                            <h2><span class="ez-toc-section" id="modelos-de-resumo-profissional"></span><strong>Modelos
+                                    de resumo profissional</strong><span class="ez-toc-section-end"></span></h2>
+                            <p><span style="font-weight: 400;">Veja a seguir alguns exemplos de resumo profissional para
+                                    se inspirar e criar o seu.&nbsp;</span></p>
+                            <h3><span class="ez-toc-section" id="vendedor"></span><strong>Vendedor</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Experiência de 5 anos em vendas de calçados, trabalhando
+                                    em lojas de rua e shopping. Tenho graduação em Administração de Empresas pela
+                                    Faculdades Unidas (dez/2018) e possuo conhecimento em sistemas de vendas (CRM) e no
+                                    Pacote Office (Excel, PowerPoint e Word).</span></p>
+                            <h3><span class="ez-toc-section"
+                                    id="desenvolvedor"></span><strong>Desenvolvedor</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Experiência de 3 anos em programação com conhecimentos de
+                                    C#, C++ e Python. Graduada em TI na Faculdades Unidas. Meu TCC recebeu nota máxima
+                                    da banca examinadora. Faço trabalho voluntário como desenvolvedora de games para a
+                                    Associação das Crianças Felizes. Também tenho conhecimento em SQL, Unix Shell
+                                    Scripts, Node JS e Java Script. Tenho inglês intermediário e curso espanhol duas
+                                    vezes por semana para terminar o nível básico (A2) até o final do ano.&nbsp;</span>
+                            </p>
+                            <h3><span class="ez-toc-section" id="enfermeiro"></span><strong>Enfermeiro</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Tenho experiência de 15 anos no atendimento a pacientes
+                                    internados em unidades de tratamento intensivo. Sou graduada em Enfermagem pela
+                                    Unifesp e tenho pós graduação em Enfermagem em Terapia Intensiva. Também tenho
+                                    experiência em atendimento ambulatorial, atenção básica de saúde, saúde da família,
+                                    emergência e urgência.&nbsp;</span></p>
+                            <h3><span class="ez-toc-section" id="advogado"></span><strong>Advogado</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Sou graduado em Direito pela Universidade São Judas e
+                                    tenho 4 anos de experiência em contencioso empresarial no segmento de construção
+                                    civil. Sou familiarizado com atuação em tribunais. Tenho conhecimento avançado de
+                                    Francês e inglês intermediário.&nbsp;</span></p>
+                            <h3><span class="ez-toc-section"
+                                    id="recepcionista"></span><strong>Recepcionista</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Experiência de 4 anos em recepção de consultório médico
+                                    atendendo clientes, organizando agenda, preparando recibos e fazendo contato com
+                                    laboratórios. Curso o último ano da graduação em Contabilidade na Universidade
+                                    Mackenzie no período noturno. Tenho inglês básico e conhecimento avançado em Excel e
+                                    pacote Office em geral.&nbsp;</span></p>
+                            <h3><span class="ez-toc-section" id="jovem-aprendiz"></span><strong>Jovem
+                                    aprendiz</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Apesar de nunca ter trabalhado profissionalmente, há 2
+                                    anos faço parte de uma ONG e ajudo na organização da festa junina e Natal. Sou
+                                    responsável pela venda das rifas e consigo gerar cerca de R$ 1 mil de lucro por
+                                    evento.&nbsp;</span></p>
+                            <p><span style="font-weight: 400;">Estou cursando o último ano do Ensino Médio no período
+                                    matutino e tenho conhecimento nível intermediário do pacote office (Excel,
+                                    PowerPoint e Word). Tenho muito interesse na área comercial e em jul/2018 fiz um
+                                    curso de especialização no SENAC (A Arte de Encantar o Cliente, 8 horas).</span></p>
+                            <h3><span class="ez-toc-section" id="recursos-humanos"></span><strong>Recursos
+                                    humanos</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Durante dois anos trabalhei no RH de empresas do segmento
+                                    automotivo, atuando em processos de R&amp;S, T&amp;D, Remuneração, Endomarketing,
+                                    Benefícios e Folha de pagamento. Sou graduado em Psicologia pela Uninove
+                                    (dezembro/2017) e tenho conhecimento de sistemas de RH e conhecimento avançado de
+                                    Excel.&nbsp;</span></p>
+                            <h3><span class="ez-toc-section" id="tecnico-de-logistica"></span><strong>Técnico de
+                                    logística</strong><span class="ez-toc-section-end"></span></h3>
+                            <p><span style="font-weight: 400;">Tenho 17 anos de experiência em logística, liberando e
+                                    corrigindo paletes, imprimindo etiquetas, fazendo conferência e realizando
+                                    procedimento de segurança do trabalho. Tenho Ensino Médio completo, conhecimento
+                                    intermediário em Excel e cursos técnicos em Eletrotécnica e Eletrônica.</span></p>
+                            <p><span style="font-weight: 400;">Pronto! Agora que você sabe como criar seu resumo
+                                    profissional com todas as informações que ele precisa ter, </span><a
+                                    href="https://www.vagas.com.br/cadastrar-curriculo?origem-vagas=vp-post"
+                                    target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">cadastre
+                                        seu currículo</span></a><span style="font-weight: 400;"> no</span><a
+                                    href="https://www.vagas.com.br/?origem-vagas=vp-post" target="_blank"
+                                    rel="noopener noreferrer"><span style="font-weight: 400;">
+                                        VAGAS.com.br</span></a><span style="font-weight: 400;"> e aproveite inúmeras
+                                    oportunidades de emprego. Se você já tem um cadastro,</span><a
+                                    href="https://www.vagas.com.br/servicos/curriculo?origem-vagas=vp-post"
+                                    target="_blank" rel="noopener noreferrer"><span style="font-weight: 400;">
+                                        atualize-o</span></a><span style="font-weight: 400;"> aqui.</span></p>
+
+
+                            <script type="application/ld+json">
+{
+  "@context": "https://schema.org/", 
+  "@type": "HowTo", 
+  "name": "Como fazer resumo profissional",
+  "description": "Veja a seguir exemplos de resumo profissional para três vagas de emprego e observe como montar o texto com todas as informações necessárias.",
+  "image": "https://dtpr0iglcwflm.cloudfront.net/profissoes/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-555x302.jpg",
+  "step": [{
+    "@type": "HowToStep",
+    "text": "No resumo profissional, você precisa deixar clara a experiência que tem na área, principalmente quando esse é um requisito do anúncio da vaga. Não vale mentir (nem aumentar), mas é preciso cumprir o requisito e ter objetividade ao dar essa informação.",
+    "image": "https://dtpr0iglcwflm.cloudfront.net/profissoes/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-555x302.jpg",
+    "name": "Tempo de experiência",
+    "url": "https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/"
+  },{
+    "@type": "HowToStep",
+    "text": "Resumir as áreas em que você já trabalhou dá uma ideia do tipo de experiência que você tem e do que pode entregar à empresa. Se você ainda não passou por várias áreas, vale detalhar as atividades que já realizou.",
+    "image": "https://dtpr0iglcwflm.cloudfront.net/profissoes/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-555x302.jpg",
+    "name": "Áreas em que trabalhou",
+    "url": "https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/"
+  },{
+    "@type": "HowToStep",
+    "text": "Quanto mais experiência você tiver, menos destaque precisa dar para sua formação. O contrário também é válido: se você ainda não tem experiência profissional, o “ouro” do seu resumo deve ser a sua formação.",
+    "image": "https://dtpr0iglcwflm.cloudfront.net/profissoes/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-555x302.jpg",
+    "name": "Formação profissional",
+    "url": "https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/"
+  },{
+    "@type": "HowToStep",
+    "text": "Ainda no resumo profissional você pode destacar outros requisitos do anúncio que possa cumprir. Conhecimento de softwares e idiomas, por exemplo, entram aqui.",
+    "image": "https://dtpr0iglcwflm.cloudfront.net/profissoes/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-555x302.jpg",
+    "name": "Softwares, ferramentas e idiomas",
+    "url": "https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/"
+  },{
+    "@type": "HowToStep",
+    "text": "Para finalizar, cite certificados e outras informações que sejam realmente relevantes para o cargo que você quer ocupar.",
+    "image": "https://dtpr0iglcwflm.cloudfront.net/profissoes/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-555x302.jpg",
+    "name": "Certificados e informações complementares",
+    "url": "https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/"
+  }]    
+}
+</script>
+                        </div>
+                    </article>
+
+    </main>
+
+    <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Article",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://profissoes.vagas.com.br/resumo-profissional-qualificacoes-e-diferenciais/"
+      },
+      "headline": "Resumo profissional: dicas e modelos para destacar seus diferenciais",
+      "image": "https://profissoes.vagas.com.br/wp-content/uploads/2018/10/resumo-profissional-como-incluir-no-curriculo-263x200.jpg",
+      "datePublished": "2021-02-10T00:10:35-03:00",
+      "dateModified": "2022-08-31T12:30:08-03:00",
+      "author": {
+        "@type": "Organization",
+        "name": "VAGAS Profissões"
+      },
+
+      "publisher": {
+        "@type": "Organization",
+        "name": "VAGAS Profissões",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.vagas.com.br/profissoes/wp-content/themes/profissoes-v2/img/logo_vagas_profissoes.png"
+        }
+      },
+      "description": "O resumo profissional mostra um breve relato das suas experiências. Veja como preenchê-lo e conseguir as melhores oportunidades de emprego agora!"
+    }
+  </script>
+
+    <section id="footer-mobile-banner" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="banner-mobile visible-xs visible-sm banner-position banner-position-horizontal">
+                    <div id='vp_mobile_materias_leaderboard_320x50'>
+                        <script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+          googletag.cmd.push(function() { googletag.display('vp_mobile_materias_leaderboard_320x50'); });
+      </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" role="contentinfo">
+        <div class="container" id="footer-info">
+            <div class="row links-footer-menus">
+                <div class="col-md-4">
+                    <p>Dicas para atualizar o currículo</p>
+                    <ul class="list-unstyled">
+                        <li><a href='https://profissoes.vagas.com.br/atualizar-curriculo'>Atualizar currículo: O guia
+                                definitivo</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/dicas-de-seo-para-curriculo-aparecer'>Dicas para
+                                seu currículo se destacar</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/voce-e-junior-pleno-ou-senior'>Júnior, pleno ou
+                                sênior: qual colocar no CV?</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <p>Dicas para procurar emprego</p>
+                    <ul class="list-unstyled">
+                        <li><a href='https://profissoes.vagas.com.br/conseguir-emprego-pelo-vagas'>Como conseguir
+                                emprego pelo VAGAS?</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/como-conseguir-emprego-sem-ter-experiencia'>Conseguir
+                                emprego sem experiência</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/como-fazer-entrevista-de-emprego-pode-x-nao-pode'>Como
+                                fazer entrevista de emprego</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <p>Dicas para sua carreira</p>
+                    <ul class="list-unstyled">
+                        <li><a
+                                href='https://profissoes.vagas.com.br/3-etapas-para-planejar-carreira-profissional-e-crescer'>Como
+                                planejar carreira profissional?</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/uma-nova-carreira-apos-os-40-anos-e-possivel'>Tenha
+                                uma nova carreira aos 40 anos</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/7-profissoes-futuro-em-alta'>Quais são as
+                                profissões do futuro?</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <span class="logo-footer"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class='footer-title'>VagasPinhal Profissões: tudo para seu desenvolvimento profissional</span>
+                    <p>Somos o portal de conteúdo da VagasPinhal.com, o maior site de carreiras da cidade. Aqui você encontra
+                        dicas sobre planejamento de carreira, artigos de especialistas, informações para alavancar suas
+                        habilidades profissionais, além de acompanhar as tendências de mercado.</p>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="container" id="copyright">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="index.php"><strong>Vagas</strong></a>
+                    Copyright© 2024 VagasPinhal.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    </body>
+
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1713543882 -->

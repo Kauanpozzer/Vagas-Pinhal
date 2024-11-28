@@ -1,0 +1,794 @@
+<!doctype html>
+<html lang="pt-BR" class="no-js">
+
+<head>
+    <meta charset="UTF-8">
+    <script>if (navigator.userAgent.match(/MSIE|Internet Explorer/i) || navigator.userAgent.match(/Trident\/7\..*?rv:11/i)) { var href = document.location.href; if (!href.match(/[?&]nowprocket/)) { if (href.indexOf("?") == -1) { if (href.indexOf("#") == -1) { document.location.href = href + "?nowprocket=1" } else { document.location.href = href.replace("#", "?nowprocket=1#") } } else { if (href.indexOf("#") == -1) { document.location.href = href + "&nowprocket=1" } else { document.location.href = href.replace("#", "&nowprocket=1#") } } } }</script>
+    <script>class RocketLazyLoadScripts { constructor() { this.v = "1.2.4", this.triggerEvents = ["keydown", "mousedown", "mousemove", "touchmove", "touchstart", "touchend", "wheel"], this.userEventHandler = this._triggerListener.bind(this), this.touchStartHandler = this._onTouchStart.bind(this), this.touchMoveHandler = this._onTouchMove.bind(this), this.touchEndHandler = this._onTouchEnd.bind(this), this.clickHandler = this._onClick.bind(this), this.interceptedClicks = [], window.addEventListener("pageshow", t => { this.persisted = t.persisted }), window.addEventListener("DOMContentLoaded", () => { this._preconnect3rdParties() }), this.delayedScripts = { normal: [], async: [], defer: [] }, this.trash = [], this.allJQueries = [] } _addUserInteractionListener(t) { if (document.hidden) { t._triggerListener(); return } this.triggerEvents.forEach(e => window.addEventListener(e, t.userEventHandler, { passive: !0 })), window.addEventListener("touchstart", t.touchStartHandler, { passive: !0 }), window.addEventListener("mousedown", t.touchStartHandler), document.addEventListener("visibilitychange", t.userEventHandler) } _removeUserInteractionListener() { this.triggerEvents.forEach(t => window.removeEventListener(t, this.userEventHandler, { passive: !0 })), document.removeEventListener("visibilitychange", this.userEventHandler) } _onTouchStart(t) { "HTML" !== t.target.tagName && (window.addEventListener("touchend", this.touchEndHandler), window.addEventListener("mouseup", this.touchEndHandler), window.addEventListener("touchmove", this.touchMoveHandler, { passive: !0 }), window.addEventListener("mousemove", this.touchMoveHandler), t.target.addEventListener("click", this.clickHandler), this._renameDOMAttribute(t.target, "onclick", "rocket-onclick"), this._pendingClickStarted()) } _onTouchMove(t) { window.removeEventListener("touchend", this.touchEndHandler), window.removeEventListener("mouseup", this.touchEndHandler), window.removeEventListener("touchmove", this.touchMoveHandler, { passive: !0 }), window.removeEventListener("mousemove", this.touchMoveHandler), t.target.removeEventListener("click", this.clickHandler), this._renameDOMAttribute(t.target, "rocket-onclick", "onclick"), this._pendingClickFinished() } _onTouchEnd() { window.removeEventListener("touchend", this.touchEndHandler), window.removeEventListener("mouseup", this.touchEndHandler), window.removeEventListener("touchmove", this.touchMoveHandler, { passive: !0 }), window.removeEventListener("mousemove", this.touchMoveHandler) } _onClick(t) { t.target.removeEventListener("click", this.clickHandler), this._renameDOMAttribute(t.target, "rocket-onclick", "onclick"), this.interceptedClicks.push(t), t.preventDefault(), t.stopPropagation(), t.stopImmediatePropagation(), this._pendingClickFinished() } _replayClicks() { window.removeEventListener("touchstart", this.touchStartHandler, { passive: !0 }), window.removeEventListener("mousedown", this.touchStartHandler), this.interceptedClicks.forEach(t => { t.target.dispatchEvent(new MouseEvent("click", { view: t.view, bubbles: !0, cancelable: !0 })) }) } _waitForPendingClicks() { return new Promise(t => { this._isClickPending ? this._pendingClickFinished = t : t() }) } _pendingClickStarted() { this._isClickPending = !0 } _pendingClickFinished() { this._isClickPending = !1 } _renameDOMAttribute(t, e, r) { t.hasAttribute && t.hasAttribute(e) && (event.target.setAttribute(r, event.target.getAttribute(e)), event.target.removeAttribute(e)) } _triggerListener() { this._removeUserInteractionListener(this), "loading" === document.readyState ? document.addEventListener("DOMContentLoaded", this._loadEverythingNow.bind(this)) : this._loadEverythingNow() } _preconnect3rdParties() { let t = []; document.querySelectorAll("script[type=rocketlazyloadscript][data-rocket-src]").forEach(e => { let r = e.getAttribute("data-rocket-src"); if (r && 0 !== r.indexOf("data:")) { 0 === r.indexOf("//") && (r = location.protocol + r); try { let i = new URL(r).origin; i !== location.origin && t.push({ src: i, crossOrigin: e.crossOrigin || "module" === e.getAttribute("data-rocket-type") }) } catch (n) { } } }), t = [...new Map(t.map(t => [JSON.stringify(t), t])).values()], this._batchInjectResourceHints(t, "preconnect") } async _loadEverythingNow() { this.lastBreath = Date.now(), this._delayEventListeners(), this._delayJQueryReady(this), this._handleDocumentWrite(), this._registerAllDelayedScripts(), this._preloadAllScripts(), await this._loadScriptsFromList(this.delayedScripts.normal), await this._loadScriptsFromList(this.delayedScripts.defer), await this._loadScriptsFromList(this.delayedScripts.async); try { await this._triggerDOMContentLoaded(), await this._pendingWebpackRequests(this), await this._triggerWindowLoad() } catch (t) { console.error(t) } window.dispatchEvent(new Event("rocket-allScriptsLoaded")), this._waitForPendingClicks().then(() => { this._replayClicks() }), this._emptyTrash() } _registerAllDelayedScripts() { document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t => { t.hasAttribute("data-rocket-src") ? t.hasAttribute("async") && !1 !== t.async ? this.delayedScripts.async.push(t) : t.hasAttribute("defer") && !1 !== t.defer || "module" === t.getAttribute("data-rocket-type") ? this.delayedScripts.defer.push(t) : this.delayedScripts.normal.push(t) : this.delayedScripts.normal.push(t) }) } async _transformScript(t) { if (await this._littleBreath(), !0 === t.noModule && "noModule" in HTMLScriptElement.prototype) { t.setAttribute("data-rocket-status", "skipped"); return } return new Promise(navigator.userAgent.indexOf("Firefox/") > 0 || "" === navigator.vendor ? e => { let r = document.createElement("script");[...t.attributes].forEach(t => { let e = t.nodeName; "type" !== e && ("data-rocket-type" === e && (e = "type"), "data-rocket-src" === e && (e = "src"), r.setAttribute(e, t.nodeValue)) }), t.text && (r.text = t.text), r.hasAttribute("src") ? (r.addEventListener("load", e), r.addEventListener("error", e)) : (r.text = t.text, e()); try { t.parentNode.replaceChild(r, t) } catch (i) { e() } } : e => { function r() { t.setAttribute("data-rocket-status", "failed"), e() } try { let i = t.getAttribute("data-rocket-type"), n = t.getAttribute("data-rocket-src"); i ? (t.type = i, t.removeAttribute("data-rocket-type")) : t.removeAttribute("type"), t.addEventListener("load", function r() { t.setAttribute("data-rocket-status", "executed"), e() }), t.addEventListener("error", r), n ? (t.removeAttribute("data-rocket-src"), t.src = n) : t.src = "data:text/javascript;base64," + window.btoa(unescape(encodeURIComponent(t.text))) } catch (s) { r() } }) } async _loadScriptsFromList(t) { let e = t.shift(); return e && e.isConnected ? (await this._transformScript(e), this._loadScriptsFromList(t)) : Promise.resolve() } _preloadAllScripts() { this._batchInjectResourceHints([...this.delayedScripts.normal, ...this.delayedScripts.defer, ...this.delayedScripts.async], "preload") } _batchInjectResourceHints(t, e) { var r = document.createDocumentFragment(); t.forEach(t => { let i = t.getAttribute && t.getAttribute("data-rocket-src") || t.src; if (i) { let n = document.createElement("link"); n.href = i, n.rel = e, "preconnect" !== e && (n.as = "script"), t.getAttribute && "module" === t.getAttribute("data-rocket-type") && (n.crossOrigin = !0), t.crossOrigin && (n.crossOrigin = t.crossOrigin), t.integrity && (n.integrity = t.integrity), r.appendChild(n), this.trash.push(n) } }), document.head.appendChild(r) } _delayEventListeners() { let t = {}; function e(e, r) { !function e(r) { !t[r] && (t[r] = { originalFunctions: { add: r.addEventListener, remove: r.removeEventListener }, eventsToRewrite: [] }, r.addEventListener = function () { arguments[0] = i(arguments[0]), t[r].originalFunctions.add.apply(r, arguments) }, r.removeEventListener = function () { arguments[0] = i(arguments[0]), t[r].originalFunctions.remove.apply(r, arguments) }); function i(e) { return t[r].eventsToRewrite.indexOf(e) >= 0 ? "rocket-" + e : e } }(e), t[e].eventsToRewrite.push(r) } function r(t, e) { let r = t[e]; Object.defineProperty(t, e, { get: () => r || function () { }, set(i) { t["rocket" + e] = r = i } }) } e(document, "DOMContentLoaded"), e(window, "DOMContentLoaded"), e(window, "load"), e(window, "pageshow"), e(document, "readystatechange"), r(document, "onreadystatechange"), r(window, "onload"), r(window, "onpageshow") } _delayJQueryReady(t) { let e; function r(t) { return t.split(" ").map(t => "load" === t || 0 === t.indexOf("load.") ? "rocket-jquery-load" : t).join(" ") } function i(i) { if (i && i.fn && !t.allJQueries.includes(i)) { i.fn.ready = i.fn.init.prototype.ready = function (e) { return t.domReadyFired ? e.bind(document)(i) : document.addEventListener("rocket-DOMContentLoaded", () => e.bind(document)(i)), i([]) }; let n = i.fn.on; i.fn.on = i.fn.init.prototype.on = function () { return this[0] === window && ("string" == typeof arguments[0] || arguments[0] instanceof String ? arguments[0] = r(arguments[0]) : "object" == typeof arguments[0] && Object.keys(arguments[0]).forEach(t => { let e = arguments[0][t]; delete arguments[0][t], arguments[0][r(t)] = e })), n.apply(this, arguments), this }, t.allJQueries.push(i) } e = i } i(window.jQuery), Object.defineProperty(window, "jQuery", { get: () => e, set(t) { i(t) } }) } async _pendingWebpackRequests(t) { let e = document.querySelector("script[data-webpack]"); async function r() { return new Promise(t => { e.addEventListener("load", t), e.addEventListener("error", t) }) } e && (await r(), await t._requestAnimFrame(), await t._pendingWebpackRequests(t)) } async _triggerDOMContentLoaded() { this.domReadyFired = !0, await this._littleBreath(), document.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._littleBreath(), window.dispatchEvent(new Event("rocket-DOMContentLoaded")), await this._littleBreath(), document.dispatchEvent(new Event("rocket-readystatechange")), await this._littleBreath(), document.rocketonreadystatechange && document.rocketonreadystatechange() } async _triggerWindowLoad() { await this._littleBreath(), window.dispatchEvent(new Event("rocket-load")), await this._littleBreath(), window.rocketonload && window.rocketonload(), await this._littleBreath(), this.allJQueries.forEach(t => t(window).trigger("rocket-jquery-load")), await this._littleBreath(); let t = new Event("rocket-pageshow"); t.persisted = this.persisted, window.dispatchEvent(t), await this._littleBreath(), window.rocketonpageshow && window.rocketonpageshow({ persisted: this.persisted }) } _handleDocumentWrite() { let t = new Map; document.write = document.writeln = function (e) { let r = document.currentScript; r || console.error("WPRocket unable to document.write this: " + e); let i = document.createRange(), n = r.parentElement, s = t.get(r); void 0 === s && (s = r.nextSibling, t.set(r, s)); let a = document.createDocumentFragment(); i.setStart(a, 0), a.appendChild(i.createContextualFragment(e)), n.insertBefore(a, s) } } async _littleBreath() { Date.now() - this.lastBreath > 45 && (await this._requestAnimFrame(), this.lastBreath = Date.now()) } async _requestAnimFrame() { return document.hidden ? new Promise(t => setTimeout(t)) : new Promise(t => requestAnimationFrame(t)) } _emptyTrash() { this.trash.forEach(t => t.remove()) } static run() { let t = new RocketLazyLoadScripts; t._addUserInteractionListener(t) } } RocketLazyLoadScripts.run();</script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" id="PrivallyApp"
+        data-rocket-src="https://app.privally.global/app.next.js" pid="b24d49-afe463" h-reject="true"></script>
+    <link rel="stylesheet" href="entrevista.css">
+
+    ​
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    ​
+    <!-- wp_head : start -->
+    <meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+    <!-- This site is optimized with the Yoast SEO plugin v21.7 - https://yoast.com/wordpress/plugins/seo/ -->
+    <title>Entrevista de Emprego: Dicas e Exemplos de Respostas</title>
+    <link href='https://fonts.gstatic.com' crossorigin rel='preconnect' />
+    <link rel="alternate" type="application/rss+xml"
+        title="Feed de comentários para VAGAS Profissões &raquo; Como responder as principais perguntas de uma entrevista de emprego?"
+        href="https://profissoes.vagas.com.br/entrevista-de-emprego/feed/" />
+    <link rel='stylesheet' id='wp-block-library-css'
+        href='https://profissoes.vagas.com.br/wp-includes/css/dist/block-library/style.min.css?ver=6.4.1'
+        type='text/css' media='all' />
+
+    <link rel='stylesheet' id='ez-toc-css'
+        href='https://profissoes.vagas.com.br/wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=2.0.61'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='wordpress-popular-posts-css-css'
+        href='https://profissoes.vagas.com.br/wp-content/plugins/wordpress-popular-posts/assets/css/wpp.css?ver=6.3.4'
+        type='text/css' media='all' />
+    <link rel='stylesheet' id='preload-style-css'
+        href='https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/css/preload-style.min.css?ver=1.2.55'
+        type='text/css' media='all' />
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/js/jquery-3.5.min.js?ver=6.4.1.3"
+        id="jquery-js"></script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/themes/profissoes-v2/js/jquery-migrate-3.3.min.js?ver=6.4.1.3"
+        id="jquery-migrate-js"></script>
+    <script type="rocketlazyloadscript" data-rocket-type="text/javascript" async='async'
+        data-rocket-src="https://profissoes.vagas.com.br/wp-content/mu-plugins/chorus-core/integrations/script.js?ver=1"
+        id="chorus_integrations_main-js"></script>
+    <script type="application/json" id="wpp-json">
+
+{"sampling_active":0,"sampling_rate":100,"ajax_url":"https:\/\/profissoes.vagas.com.br\/wp-json\/wordpress-popular-posts\/v1\/popular-posts","api_url":"https:\/\/profissoes.vagas.com.br\/wp-json\/wordpress-popular-posts","ID":15024,"token":"2ebfe78399","lang":0,"debug":0}</script>
+    <meta name="google-site-verification" content="8RAoGNaeZKLFovvco4xr8jjIh--7shfctkzK4Yokm-4" />
+</head>
+
+<body class="post-template-default single single-post postid-15024 single-format-standard entrevista-de-emprego">
+    <header class="header clear" style="background-color: #181D2E; height: 8rem;" >
+        <div class="container">
+            <div class="row">
+                <!-- logo -->
+                <div class="logo col-md-3 col-sm-12 col-xs-12">
+                    <p><a href="index.php"><span class="vagas_profissoes_logo">Vagas
+                                profissões</span></a></p>
+                    <!-- /logo -->
+                    <div class="menu-wrapper col-md-9 col-sm-12 col-xs-12">
+                    </div>
+                </div>
+            </div>
+    </header>
+    <!-- /header -->
+    <main role="main">
+
+
+
+        <section class="container" id="post-single">
+            <div class="row">
+
+                <div class="col-md-6">
+                    <article id="post-15024"
+                        class="post-15024 post type-post status-publish format-standard has-post-thumbnail hentry category-busca-emprego category-home category-processos-seletivos tag-entrevista-de-emprego">
+
+                        <h1 class="post-title">Como responder as principais perguntas de uma entrevista de emprego?</h1>
+                        <h2 class='post-subtitle'>Uma entrevista de emprego provoca tensão e altas emoções aliadas ao
+                            desejo de conquistar a vaga. Saber como responder as principais perguntas é um grande passo
+                            para se sair bem</h2>
+                        <div class="single-post-thumbnail">
+                            <img src="https://profissoes.vagas.com.br/wp-content/uploads/2018/10/25-perguntas-da-entrevista-de-emprego-e1573210495226-555x240.jpg"
+                                class="attachment-large size-large wp-post-image"
+                                alt="Homem sorrindo e esticando a mão para o candidato da entrevista de emprego"
+                                decoding="async" fetchpriority="high"
+                                srcset="https://profissoes.vagas.com.br/wp-content/uploads/2018/10/25-perguntas-da-entrevista-de-emprego-e1573210495226-555x240.jpg 555w, https://profissoes.vagas.com.br/wp-content/uploads/2018/10/25-perguntas-da-entrevista-de-emprego-e1573210495226-768x333.jpg 768w, https://profissoes.vagas.com.br/wp-content/uploads/2018/10/25-perguntas-da-entrevista-de-emprego-e1573210495226-1536x665.jpg 1536w, https://profissoes.vagas.com.br/wp-content/uploads/2018/10/25-perguntas-da-entrevista-de-emprego-e1573210495226-2048x887.jpg 2048w"
+                                sizes="(max-width: 555px) 100vw, 555px" />
+                        </div>
+
+                        <div class="post-body">
+                            <p><span style="font-weight: 400;">A entrevista de emprego é uma das etapas mais esperadas e
+                                    mais tensas do processo seletivo. Muitos candidatos ficam sem saber o que dizer
+                                    diante do entrevistador e podem acabar perdendo a </span><a href="index.php"
+                                    target="_blank" rel="noreferrer noopener"><span style="font-weight: 400;">vaga de
+                                        emprego</span></a><span style="font-weight: 400;">. </span></p>
+
+
+
+                            <p><span style="font-weight: 400;">Uma forma bastante eficiente de evitar que isso aconteça
+                                    com você é conferir quais são as principais perguntas da entrevista de emprego e
+                                    qual é a melhor forma de responder cada uma, entendendo o que o entrevistador quer
+                                    saber e dando a ele o que precisa. Vamos lá?</span></p>
+
+
+
+
+                            <h3 class="wp-block-heading"><span class="ez-toc-section"
+                                    id="o-que-acontece-na-entrevista-de-emprego"></span><strong>O que acontece na
+                                    entrevista de emprego</strong><span class="ez-toc-section-end"></span></h3>
+
+
+
+                            <p>A entrevista de emprego é a etapa em que o entrevistador faz perguntas ao candidato para
+                                entender melhor sua experiência, seu perfil profissional, seus conhecimentos e ainda o
+                                seu interesse pela empresa em questão. É também o momento de tirar dúvidas sobre o
+                                currículo do profissional.&nbsp;<a
+                                    href="https://profissoes.vagas.com.br/5-dicas-para-mandar-bem-em-uma-video-entrevista/">Seja
+                                    no formato presencial ou por videochamada</a>, esse é o objetivo principal.&nbsp;
+                            </p>
+
+
+
+
+
+
+                            <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Dicas para fazer uma boa entrevista de emprego | VAGAS.com",
+  "description": "Quer saber como ir bem em uma entrevista de emprego? Luciana Calegari, RH da Vagas, traz dicas essenciais para você participar dessa fase do processo seletivo e ainda uma apresenta uma dica especial no final do vídeo ;)
+
+Veja pontos que o recrutador quer saber de você na entrevista:
+
+00:00 Dica 1: se prepare
+01:01 Dica 2: saiba contar sua trajetória profissional
+01:34 Dica 3: ensaie a entrevista de emprego
+01:51 Dica4: saiba suas qualidades e pontos a desenvolver
+02:22 Dica 5: seja você mesmo!
+02:45 Dica 6: se não entender, pergunte novamente
+03:03 Dica 7: tenha entusiasmo pela oportunidades",
+  "thumbnailUrl": "https://i.ytimg.com/vi/dccrppRDl9M/maxresdefault.jpg",
+  "uploadDate": "2019-08-24",
+  "duration": "PT3M24S",
+  "contentUrl": "https://youtu.be/dccrppRDl9M?si=jqfLClUBWaAexWer",
+  "embedUrl": "https://youtu.be/dccrppRDl9M?si=jqfLClUBWaAexWer"
+}
+</script>
+
+
+
+                            <h3 class="wp-block-heading"><span class="ez-toc-section"
+                                    id="o-que-dizer-em-uma-entrevista-de-emprego"></span><strong>O que dizer em uma
+                                    entrevista de emprego?</strong><span class="ez-toc-section-end"></span></h3>
+
+
+
+                            <p>A recomendação é ler as perguntas, entender o que o entrevistador quer saber com elas e
+                                de que forma você pode estruturar sua fala para mostrar que é o candidato ideal para a
+                                vaga. Entenda que a ideia não é chegar com a resposta pronta e decorada, o que inclusive
+                                pode prejudicar seu desempenho durante a<strong>&nbsp;seleção de emprego</strong>.</p>
+
+
+
+                            <p>Para você se preparar da melhor forma para essa conversa, listamos abaixo<strong>&nbsp;25
+                                    principais perguntas em uma entrevista entrevista de emprego</strong>&nbsp;– e,
+                                claro, a melhor forma de responder cada uma.</p>
+
+
+
+                            <h3 class="wp-block-heading"><span class="ez-toc-section"
+                                    id="25-perguntas-mais-comuns-em-uma-entrevista-de-emprego-e-como-responde-las"></span><strong>25
+                                    perguntas mais comuns em uma entrevista de emprego e como respondê-las</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+
+
+
+                            <p>Com o objetivo de proporcionar uma preparação adequada para os procedimentos de seleção,
+                                selecionamos as 25 perguntas mais realizadas em entrevistas de emprego e oferecemos
+                                orientações sobre como respondê-las. Verifique abaixo!</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>1. Você pode falar sobre você?</strong></h4>
+
+
+
+                            <p>Parece simples, mas falar sobre você na entrevista de emprego exige preparo. O recrutador
+                                não quer que você relate seu currículo inteiro nessa hora.&nbsp;</p>
+
+
+
+                            <p>O melhor é escolher duas ou três realizações ou experiências que demonstrem o quanto você
+                                é adequado para o trabalho em questão. Antes da entrevista, deixe esses exemplos frescos
+                                na memória. Vale a pena terminar explicando de que forma essas experiências preparam
+                                você para assumir a vaga que está disputando.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>2. Como você ficou sabendo da vaga?</strong></h4>
+
+
+
+                            <p>Esta é uma oportunidade para você se destacar. Se soube da vaga por um amigo que trabalha
+                                na empresa, diga o nome dele e conte o quanto você ficou animado.&nbsp;</p>
+
+
+
+                            <p>Se você descobriu a oportunidade em uma plataforma de vagas de emprego, diga o que chamou
+                                sua atenção no anúncio e por que você se interessou tanto.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>3. O que você sabe sobre a empresa?</strong></h4>
+
+
+
+                            <p>Seria fácil apenas repetir o que você leu na página “sobre nós” da empresa. Se você se
+                                esforçar um pouco mais, no entanto, pode ganhar pontos com o entrevistador.&nbsp;</p>
+
+
+
+                            <p>Nesta pergunta, ele quer saber <a
+                                    href="https://www.vagas.com.br/profissoes/selecao-por-valores-ganha-espaco-nas-empresas/">o
+                                    quanto você está alinhado à empresa</a>. Uma boa forma de responder é mostrar que
+                                você entendeu os objetivos da empresa. É possível até usar algumas palavras-chave e
+                                frases do site, mas deve emendar com algo pessoal.&nbsp;</p>
+
+
+
+                            <p>Por exemplo “Eu me sinto atraído por essa missão porque …” ou “Eu realmente acredito
+                                nessa abordagem porque …”. Isso faz toda a diferença.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>4. Por que você quer este trabalho?</strong></h4>
+
+
+
+                            <p>As empresas querem alguém apaixonado pelo trabalho.&nbsp;</p>
+
+
+
+                            <p>Para responder a esta pergunta da melhor forma, identifique alguns fatores-chave que
+                                tornam a vaga uma excelente opção para você. Por exemplo:&nbsp;</p>
+
+
+
+                            <ul>
+                                <li>Adoro atendimento ao cliente porque gosto de interagir com outras pessoas e ajudar
+                                    alguém a resolver um problema”</li>
+
+
+
+                                <li>“Eu sempre fui apaixonado por educação e acho que vocês estão fazendo coisas
+                                    incríveis, quero fazer parte disso”.</li>
+                            </ul>
+
+
+
+                            <h4 class="wp-block-heading"><strong>5. Por que devemos contratar você?</strong></h4>
+
+
+
+                            <p>Esta é a hora de mostrar <a
+                                    href="https://profissoes.vagas.com.br/pergunta-porque-devo-contratar/"
+                                    target="_blank" rel="noreferrer noopener">por que a empresa deve te contratar</a>,
+                                deixando claro que você é a pessoa certa para o cargo. Na hora de responder, é
+                                importante mostrar que você não apenas pode fazer o trabalho, mas também é capaz de
+                                produzir bons resultados e está alinhado à cultura da empresa.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>6. Quais são os seus pontos fortes?</strong></h4>
+
+
+
+                            <p>A dica aqui é falar sobre seus pontos fortes verdadeiros – e não sobre os que você acha
+                                que o recrutador quer ouvir. Escolha seus pontos fortes mais relevantes para a vaga e
+                                seja bem específico. Por exemplo, em vez de falar que tem “habilidades com pessoas”,
+                                diga que tem “comunicação persuasiva” ou é bom em “construir relacionamentos”. Em
+                                seguida, dê um exemplo real de como você aplica essa característica no ambiente
+                                profissional.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>7. Quais são seus pontos fracos?</strong></h4>
+
+
+
+                            <p>O entrevistador quer avaliar seu auto-conhecimento e também sua honestidade, mas nem por
+                                isso você precisa acabar com suas chances de conseguir o emprego. Não é o caso, por
+                                exemplo, de assumir que você nunca consegue cumprir prazos. Muito menos é hora de você
+                                se vender como o profissional perfeito. O entrevistador sabe muito bem que isso não
+                                existe. O melhor é citar pontos em que você sabe que pode melhorar e está se esforçando.
+                                Exemplo? “<em>Não sou bom em falar em público, tenho um certo pavor, mas estou me
+                                    esforçando, até me ofereci como voluntário para conduzir reuniões e ir me
+                                    acostumando a falar para um público maior.”</em></p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>8. Qual é a sua maior conquista profissional?</strong>
+                            </h4>
+
+
+
+                            <p>Uma ótima maneira de responder essa pergunta é utilizando a<a
+                                    href="https://profissoes.vagas.com.br/saiba-como-usar-tecnica-star-na-entrevista-de-emprego/"
+                                    target="_blank" rel="noreferrer noopener">&nbsp;técnica STAR</a>, que ajuda a
+                                organizar sua fala fornecendo exemplos concretos que mostrem que você tem experiência e
+                                competências para a vaga em questão. STAR vem de:</p>
+
+
+
+                            <ul>
+                                <li><em>Situation&nbsp;</em>(Situação);</li>
+
+
+
+                                <li><em>Task</em>&nbsp;(Tarefa)<em>;</em>&nbsp;</li>
+
+
+
+                                <li><em>Action&nbsp;</em>(Ação)<em>;</em></li>
+
+
+
+                                <li><em>Result&nbsp;</em>(Resultado).</li>
+                            </ul>
+
+
+
+                            <p>Na prática, você precisa contextualizar a situação (exemplo: “<em>No meu último trabalho
+                                    como analista júnior, meu papel era gerenciar o processo de
+                                    faturamento</em>&nbsp;”), descrever o que você realmente fez (a ação) e o que você
+                                alcançou (o resultado). Por exemplo, “<em>Em um mês, simplifiquei o processo, o que
+                                    economizou 10 horas de trabalho por pessoa por mês e reduziu os erros nas faturas em
+                                    25%”.</em></p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>9. Fale sobre um desafio ou conflito que você enfrentou
+                                    no trabalho e como você lidou com isso.</strong></h4>
+
+
+
+                            <p>Essa é uma pergunta bastante comum em<a
+                                    href="https://profissoes.vagas.com.br/o-que-e-entrevista-por-competencias/"
+                                    target="_blank" rel="noreferrer noopener">&nbsp;entrevistas por competências</a>, em
+                                que o entrevistador pede que o candidato conte situações reais por que já passou, que
+                                possam mostrar como ele fez para atingir uma meta desafiadora ou resolver um problema de
+                                comunicação, por exemplo. Mais uma vez, você pode usar o método Star e focar a resposta
+                                na forma como lidou com a situação profissional. O ideal, claro, é que a história tenha
+                                um final feliz.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>10. Onde você se vê daqui a cinco anos?</strong></h4>
+
+
+
+                            <p>Nesta pergunta, é importante que você&nbsp;<a
+                                    href="https://profissoes.vagas.com.br/como-voce-se-imagina-daqui-dez-anos/"
+                                    target="_blank" rel="noreferrer noopener">seja honesto e específico sobre seus
+                                    objetivos</a>. No entanto, é preciso considerar que o entrevistador quer saber:</p>
+
+
+
+                            <ul>
+                                <li>Se você definiu expectativas realistas para sua carreira;</li>
+
+
+
+                                <li>Se você tem ambição;</li>
+
+
+
+                                <li>Se a posição se alinha com seus objetivos de crescimento.</li>
+                            </ul>
+
+
+
+                            <p>Uma forma interessante de estruturar a resposta é pensar onde a posição pode levar e
+                                construir a resposta apostando nesse caminho. E se a vaga não estiver muito alinhada ao
+                                seu objetivo profissional? Você pode dizer que não tem muita certeza sobre o futuro, mas
+                                acredita que essa experiência possa ajudar a tomar as próximas decisões.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>11. Qual é o emprego dos seus sonhos?</strong></h4>
+
+
+
+                            <p>O entrevistador quer saber se a vaga realmente está&nbsp;alinhada aos seus valores&nbsp;e
+                                objetivos de carreira.&nbsp; A melhor aposta é falar sobre seus objetivos e ambições,
+                                indicando por que o trabalho interessa realmente a você.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>12. Você está se candidatando a vagas de outras
+                                    empresas?</strong></h4>
+
+
+
+                            <p>O entrevistador quer saber se você está sendo sincero sobre seu interesse no segmento em
+                                que a empresa em questão atua. O melhor aqui é dizer que você está explorando algumas
+                                opções semelhantes na área.&nbsp;</p>
+
+
+
+                            <p>Evite mentir. Foque nos pontos positivos relacionados às suas candidaturas.</p>
+
+
+
+                            <p>Por exemplo, você pode dizer “Estou me candidatando a vários cargos em empresas de
+                                consultoria de TI em que posso analisar as necessidades dos clientes e traduzir isso
+                                para as equipes de desenvolvimento para buscar soluções para problemas de tecnologia”.
+                            </p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>13. Por que você está deixando seu emprego
+                                    atual?</strong></h4>
+
+
+
+                            <p>Não fale nada negativo sobre seu atual ou antigo empregador. Não é hora de fazer um
+                                desabafo. O melhor é mostrar que você quer aproveitar as novas oportunidades e como a
+                                vaga a que você está se candidatando é mais adequada do que sua posição atual ou
+                                anterior.&nbsp;</p>
+
+
+
+                            <p>Por exemplo, “Eu realmente adoraria fazer parte do desenvolvimento de produtos do começo
+                                ao fim, e sei que teria essa oportunidade aqui”. Se você foi dispensado do emprego, diga
+                                apenas a verdade: “Infelizmente, fui dispensado”. É uma resposta totalmente OK.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>14. Por que você foi demitido?</strong></h4>
+
+
+
+                            <p>A área de recrutamento é muito pequena. Portanto, seja honesto nesta resposta. Você não
+                                precisa dar detalhes. Se for possível apresentar a experiência de aprendizado que você
+                                teve no antigo emprego como uma vantagem para o próximo trabalho, ponto para você.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>15. O que você está procurando em uma nova
+                                    posição?</strong></h4>
+
+
+
+                            <p>Essa é mais fácil. Tente responder citando exatamente os pontos que a vaga tem para
+                                oferecer. Seja bem específico.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>16. Que tipo de ambiente de trabalho você
+                                    prefere?</strong></h4>
+
+
+
+                            <p>De novo, a resposta está no anúncio da vaga. O entrevistador quer saber se&nbsp;<a
+                                    href="https://profissoes.vagas.com.br/qual-e-o-ambiente-de-trabalho-ideal-para-voce/"
+                                    target="_blank" rel="noreferrer noopener">você se identifica com o ambiente de
+                                    trabalho</a>&nbsp;da empresa a que você está se candidatando</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>17. Qual o seu estilo de gestão?</strong></h4>
+
+
+
+                            <p>Normalmente, as empresas buscam gestores que sejam líderes e, ao mesmo tempo, flexíveis.
+                                É interessante fornecer alguns exemplos da sua atuação gerencial – quando você aumentou
+                                sua equipe de 5 para 15 pessoas ou treinou um funcionário de baixo desempenho para se
+                                tornar o melhor vendedor da empresa. Sabe?</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>18. Em que situação você exerceu liderança?</strong>
+                            </h4>
+
+
+
+                            <p>A melhor resposta depende da vaga que você quer conquistar. Escolha um exemplo que
+                                demonstre habilidades que são importantes para a vaga de emprego disputada. Lembre-se de
+                                que detalhes tornam a história real e memorável.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>19. Em algum momento você discordou de uma decisão de
+                                    trabalho? Como foi isso?</strong></h4>
+
+
+
+                            <p>O entrevistador quer checar se você consegue discordar do chefe de forma produtiva e
+                                profissional. A ideia não é falar mal do seu chefe ou ex-chefe, mas mostrar que você
+                                consegue discordar de alguma ideia para propor um resultado melhor ou uma relação mais
+                                eficiente.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>20. Como seu chefe e seus colegas diriam que você
+                                    é?</strong></h4>
+
+
+
+                            <p>Seja honesto e tente extrair pontos fortes e características que você ainda não tenha
+                                discutido na entrevista. Ética de trabalho ou disposição para participar de outros
+                                projetos quando necessário são boas opções.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>21. Por que existe uma lacuna no seu
+                                    currículo?</strong></h4>
+
+
+
+                            <p>Uma<a href="https://profissoes.vagas.com.br/retornar-ao-trabalho-apos-pausa-na-carreira/"
+                                    target="_blank" rel="noreferrer noopener">&nbsp;lacuna no currículo</a>&nbsp;pode
+                                pegar mal, por isso é importante que ela seja bem explicada ao recrutador. Se você está
+                                desempregado há algum tempo, é importante mostrar que você não está parado. Você faz
+                                trabalho voluntário, cursos, blogs, dá aulas? Tudo isso é importante. Se você fez uma
+                                pausa para estudar, viajar ou cuidar de um parente, foque no que está disposto a fazer
+                                agora.&nbsp;<em>“Decidi fazer uma pausa na ocasião, mas hoje estou pronto para
+                                    contribuir com essa empresa das seguintes formas…”</em></p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>22. Você pode explicar por que mudou de
+                                    carreira?</strong></h4>
+
+
+
+                            <p>Explique por que tomou suas decisões e mostre como a experiência anterior pode ser útil
+                                na nova função. Você pode até surpreender o entrevistador se mostrar uma relação
+                                inusitada entre uma carreira e outra – algo que ele não tinha imaginado até então.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>23. Como você lida com pressões ou situações
+                                    estressantes?</strong></h4>
+
+
+
+                            <p>O melhor é escolher um exemplo que mostre que você consegue lidar com isso sem deixar de
+                                atingir suas metas. Explique como você se organiza para continuar produtivo e com foco
+                                mesmo em situações extremas. Vale a pena compartilhar um exemplo de situação estressante
+                                que você tenha enfrentado bem.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>24. Quantas bolas de tênis você consegue colocar em uma
+                                    limusine?</strong></h4>
+
+
+
+                            <p>1.000? 10.000? 100.000? Sério mesmo?&nbsp;<a
+                                    href="https://profissoes.vagas.com.br/4-passos-para-responder-perguntas-inesperadas-da-entrevista/"
+                                    target="_blank" rel="noreferrer noopener">Perguntas “absurdas”</a>&nbsp;ou
+                                “estranhas” surgem na conversa às vezes para investigar se você entende o que é
+                                perguntado e de que forma organiza seu raciocínio e sua lógica na resposta. Respire
+                                fundo e, se preciso, peça caneta e papel.</p>
+
+
+
+                            <h4 class="wp-block-heading"><strong>25. Você tem alguma pergunta?</strong></h4>
+
+
+
+                            <p>Esta é a sua chance de mostrar seu interesse real pela empresa e também tirar suas
+                                dúvidas. Tenha em mente algumas<a
+                                    href="https://profissoes.vagas.com.br/13-perguntas-que-voce-pode-fazer-na-entrevista-de-emprego/"
+                                    target="_blank" rel="noreferrer noopener">&nbsp;perguntas para fazer na
+                                    entrevista</a>. O ideal é escapar do óbvio. Uma boa ideia é focar no crescimento da
+                                empresa&nbsp;<em>(“O que você pode me dizer sobre os planos de crescimento da empresa?
+                                    Vocês estão preparando algum lançamento de produto?</em>”).</p>
+
+
+
+                            <h3 class="wp-block-heading"><span class="ez-toc-section"
+                                    id="o-que-e-perguntado-em-uma-entrevista-de-estagio"></span><strong>O que é
+                                    perguntado em uma entrevista de estágio?</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+
+
+
+                            <p>As perguntas de uma entrevista de estágio são parecidas com a de emprego, como as citadas
+                                anteriormente. A diferença é que o recrutador perguntará sobre seu período na faculdade,
+                                colégio ou escola técnica, e seu futuro como profissional.</p>
+
+
+
+                            <h3 class="wp-block-heading"><span class="ez-toc-section"
+                                    id="exemplos-de-perguntas-de-uma-entrevista-de-estagio"></span><strong>Exemplos de
+                                    perguntas de uma entrevista de estágio:</strong><span
+                                    class="ez-toc-section-end"></span></h3>
+
+
+
+                            <ul>
+                                <li>Enquanto estudante, como você se define?</li>
+
+
+
+                                <li>Em qual área pretende atuar profissionalmente?</li>
+
+
+
+                                <li>Qual seu objetivo ao se candidatar a esta vaga de estágio?</li>
+
+
+
+                                <li>Onde você se vê daqui 3 anos?</li>
+
+
+
+                                <li>Quais seus pontos fortes?</li>
+
+
+
+                                <li>Qual habilidade você quer evoluir nesse estágio?</li>
+                            </ul>
+
+
+
+                            <h3 class="wp-block-heading"></h3>
+
+
+
+                            <h3 class="wp-block-heading"><span class="ez-toc-section"
+                                    id="o-que-vestir-na-entrevista-de-emprego"></span><strong>O que vestir na entrevista
+                                    de emprego</strong><span class="ez-toc-section-end"></span></h3>
+
+
+
+                            <p>A entrevista de emprego é, em geral, uma conversa formal entre o candidato e o
+                                entrevistador. A regra básica é escolher a roupa que você usaria em dia de reunião se
+                                trabalhasse naquela empresa.&nbsp;</p>
+
+
+
+                            <p>Para empresas convencionais e bancos, a dica é optar por uma roupa social que deixe você
+                                confortável. Calça social e camisa, por exemplo, costumam dar certo.&nbsp;</p>
+
+
+
+                            <p>Para empresas mais modernas e informais, você pode trocar a calça social por uma jeans
+                                escura, que fica mais neutra. Aquele visual jeans rasgada com uma regata pode cair bem
+                                para quem já trabalha na empresa, mas não é a melhor opção para a entrevista. O melhor,
+                                nesse caso, é não arriscar demais para não errar.&nbsp;</p>
+
+
+
+                            <h3 class="wp-block-heading"><span class="ez-toc-section"
+                                    id="como-se-portar-durante-a-entrevista-de-emprego"></span><strong>Como se portar
+                                    durante a entrevista de emprego</strong>?<span class="ez-toc-section-end"></span>
+                            </h3>
+
+
+
+                            <p>A sua postura no momento da&nbsp;<strong>resposta para entrevista de
+                                    emprego</strong>&nbsp;também é importante. Algumas dicas simples que podem fazer a
+                                diferença são:</p>
+
+
+
+                            <ul>
+                                <li>Olhe nos olhos do recrutador. A ideia, claro, não é exagerar e muito menos ficar
+                                    “encarando” a pessoa durante toda a conversa. Você precisa passar credibilidade, por
+                                    isso é importante manter esse contato visual principalmente ao se apresentar.</li>
+
+
+
+                                <li>Não fique encolhido. Em situações tensas, é natural que a gente encolha os ombros ou
+                                    cruze os braços. Evite que isso aconteça e tente se sentar de forma reta.&nbsp;</li>
+                            </ul>
+
+
+
+
+
+
+
+                            <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Dicas para fazer uma boa entrevista de emprego | VAGAS.com",
+  "description": "Quer saber como ir bem em uma entrevista de emprego? Luciana Calegari, RH da Vagas, traz dicas essenciais para você participar dessa fase do processo seletivo e ainda uma apresenta uma dica especial no final do vídeo ;)
+
+Veja pontos que o recrutador quer saber de você na entrevista."
+  "thumbnailUrl": "https://i.ytimg.com/vi/dccrppRDl9M/hq720.jpg",
+  "uploadDate": "2019-08-29",
+  "duration": "PT3M24S",  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Vagas.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://yt3.ggpht.com/bNxHUCeAPfdu-vdWdusv62jXSgBGLjGzAG3sw9rrNdIS7lnIBiC_bHBKPBnbC5ySaJ07qwSgs3U=s176-c-k-c0x00ffffff-no-rj",
+      "width": 600,
+      "height": 60
+    }
+  },
+  "contentUrl": "https://www.youtube.com/watch?v=dccrppRDl9M"
+}
+</script>
+                        </div>
+
+                    </article>
+
+                </div>
+                <div class="col-lg-4 col-lg-offset-1 col-md-5">
+        </section>
+
+    </main>
+
+    <footer id="footer" role="contentinfo">
+        <div class="container" id="footer-info">
+            <div class="row links-footer-menus">
+                <div class="col-md-4">
+                    <p>Dicas para atualizar o currículo</p>
+                    <ul class="list-unstyled">
+                        <li><a href='https://profissoes.vagas.com.br/atualizar-curriculo'>Atualizar currículo: O guia
+                                definitivo</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/dicas-de-seo-para-curriculo-aparecer'>Dicas para
+                                seu currículo se destacar</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/voce-e-junior-pleno-ou-senior'>Júnior, pleno ou
+                                sênior: qual colocar no CV?</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <p>Dicas para procurar emprego</p>
+                    <ul class="list-unstyled">
+                        <li><a href='https://profissoes.vagas.com.br/conseguir-emprego-pelo-vagas'>Como conseguir
+                                emprego pelo VAGAS?</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/como-conseguir-emprego-sem-ter-experiencia'>Conseguir
+                                emprego sem experiência</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/como-fazer-entrevista-de-emprego-pode-x-nao-pode'>Como
+                                fazer entrevista de emprego</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <p>Dicas para sua carreira</p>
+                    <ul class="list-unstyled">
+                        <li><a
+                                href='https://profissoes.vagas.com.br/3-etapas-para-planejar-carreira-profissional-e-crescer'>Como
+                                planejar carreira profissional?</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/uma-nova-carreira-apos-os-40-anos-e-possivel'>Tenha
+                                uma nova carreira aos 40 anos</a></li>
+                        <li><a href='https://profissoes.vagas.com.br/7-profissoes-futuro-em-alta'>Quais são as
+                                profissões do futuro?</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <span class="logo-footer"></span>
+                </div>
+                <div class="col-md-6">
+                    <span class='footer-title'>VagasPinhal Profissões: tudo para seu desenvolvimento profissional</span>
+                    <p>Somos o portal de conteúdo da VagasPinhal.com, o maior site de carreiras da cidade. Aqui você
+                        encontra
+                        dicas sobre planejamento de carreira, artigos de especialistas, informações para alavancar suas
+                        habilidades profissionais, além de acompanhar as tendências de mercado.</p>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="container" id="copyright">
+            <div class="row">
+                <div class="col-md-12">
+                    <a href="index.php"><strong>Vagas</strong></a>
+                    Copyright© 2024 VagasPinhal.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

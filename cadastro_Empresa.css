@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+body {
+    font-family: "Inter", sans-serif;
+    margin: 0 auto;
+    padding: 0;
+    background-color: #f0f0f0;
+    font-family: "Inter", sans-serif;
+}
+
+.container {
+    width: 850px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    top: 60%;
+    left: 60%;
+    transform: translate(-30%,-30%);
+    
+}
+
+.form-container {
+    flex: 1;
+    padding: 15px;
+    height: 450px;
+}
+
+.form-text {
+    margin-right: 60px;
+}
+
+.form-container form {
+    width: 350px;
+    height: 600px;
+}
+
+form {
+    width: 200px;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.input-box {
+    flex-direction: column;
+    gap: 14px;
+}
+
+.input-box input {
+    background-color: #b0bac38c;
+}
+
+#nome_empresa::placeholder{
+    color: #181D2E;
+}
+
+.container {
+    width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-60%);
+    position: fixed;
+}
+
+
+
+.form-container {
+    height: 650px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+
+.logo img {
+    width: 130px;
+    margin-left: 120px;
+
+}
+
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #181D2E;
+    color: #fff;
+    height: 80px;
+}
+
+
+.logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+.div-botao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-right: 50px;
+}
+
+
+/*botao de entrar */
+#entrar {
+    background: transparent;
+    border: solid 1px #fff;
+    padding: 5px 15px;
+    text-align: center;
+    font-size: 12px;
+}
+
+#entrar a {
+    text-decoration: none;
+    color: #fff;
+
+}
+
+
+
+.form-container input[type="submit"] {
+    width: 240px;
+    background-color: #4B39FF;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+
+}
+.btn_criar{
+    display: flex;
+    justify-content: center;
+}
+
+.form-container div {
+    display: flex;
+}
+
+.image-container {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    transform: translate(-20%, -11%);
+    bottom: 0;
+    height: 690px;
+    width: 430px;
+    background-image: url('img/bitmap.svg');
+    /* Substitua 'imagem.jpg' pelo caminho da sua imagem */
+    background-size: cover;
+    background-position: center;
+    padding-right: 20px;
+    /* Adiciona espaço entre a imagem e o formulário */
+    border-right: 1px solid #ccc;
+    /* Adiciona borda divisória */
+    box-sizing: border-box;
+    /* Mantém o padding dentro da largura total */
+    background-color: #7C838A;
+}
